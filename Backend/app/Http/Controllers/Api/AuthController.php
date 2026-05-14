@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,4 +37,27 @@ class AuthController extends Controller
         ]);
     }
 
+    public function register(Request $request) {
+        $request->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'phone_number' => 'required',
+            'password' => 'required'
+        ]);
+
+        $data = User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'password' => $request->password,
+            'role' => 'user'
+        ]);
+
+        return response()->json([
+            'message' => 'Account Successfully added',
+            'data' => $data
+        ]);
+    }
 }

@@ -49,11 +49,11 @@ const login = async () => {
             <form @submit.prevent="login" action="" class="flex w-full flex-col gap-5 text-white">
                 <div class="flex flex-col gap-2">
                     <label for="">Email <span class="text-orange-500">*</span></label>
-                    <input type="email" v-model="email" required class="flex-1 p-3 transition duration-200 rounded focus:outline-0 outline-2 outline-gray-500 focus:outline-2 focus:outline-lime-500" placeholder="example@email.com" name="" id="">
+                    <input type="email" v-model="email" required class="flex-1 p-3 transition duration-200 rounded outline-2 outline-gray-500 focus:outline-2 focus:outline-lime-500" placeholder="example@email.com" name="" id="">
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="">Password <span class="text-orange-500">*</span></label>
-                    <input v-model="password" :type="isShow ? 'text' : 'password'" required minlength="8" class="flex-1 p-3 transition duration-200 rounded focus:outline-0 outline-2 outline-gray-500 focus:outline-2 focus:outline-lime-500" placeholder="Password" name="" id="">
+                    <input v-model="password" :type="isShow ? 'text' : 'password'" required minlength="8" class="flex-1 p-3 transition duration-200 rounded outline-2 outline-gray-500 focus:outline-2 focus:outline-lime-500" placeholder="Password" name="" id="">
                     <div class="flex justify-between">
                         <div class="flex items-center gap-2">
                             <input type="checkbox" @click="showPassword" name="" id=""><span class="text-[15px]">Show Password</span>

@@ -1,6 +1,6 @@
 # AI Prompt Gallery
 
-Built with Laravel API and Vue.js, AI Prompt Gallery is a modern web platform for exploring, sharing, and discovering AI image generation prompts. Users can upload prompts with AI-generated images, browse categories, search prompts, and save their favorite creations.
+Built with Laravel API and Vue.js, AI Prompt Gallery is a modern web platform for exploring, sharing, and discovering AI image generation prompts and others. Users can upload prompts with AI-generated images, browse categories, search prompts, and save their favorite creations.
 
 ## Features
 

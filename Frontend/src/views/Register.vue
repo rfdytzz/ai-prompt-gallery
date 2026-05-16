@@ -93,7 +93,7 @@ onMounted( () => {
                         </div>
                         <hr class="text-gray-500">
                         <div class="flex items-center gap-2">
-                            <input type="checkbox" required name="" id=""><router-link to="" class="text-lime-500 hover:underline text-[15px]">Terms of Service</router-link>
+                            <input type="checkbox" required name="" id=""><router-link to="/ToS" class="text-lime-500 hover:underline text-[15px]">Terms of Service</router-link>
                         </div>
                     </div>
                 </div>

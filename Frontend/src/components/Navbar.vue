@@ -25,6 +25,10 @@ const getData = async () => {
 }
 
 const logout = async () => {
+    const Mconfirm = confirm('Sure to logout?')
+    if (!Mconfirm) {
+        return 
+    }
     try {
         const token = localStorage.getItem('token')
         await axios.post('http://localhost:8000/api/logout',
@@ -42,6 +46,12 @@ const logout = async () => {
     }
 }
 
+const isOpen = ref(false)
+
+const openMenu = () => {
+    isOpen.value = !isOpen.value
+}
+
 onMounted( () => {
     getData()
 })
@@ -49,16 +59,22 @@ onMounted( () => {
 </script>
 
 <template>
-    <div class="bg-gray-900 justify-between flex items-center w-full h-23 text-white p-5">
-        <h1 class="font-bold text-[30px]">Lo<span class="text-lime-500">go</span></h1>
-        <ul class="flex gap-5">
-            <router-link to="">Home</router-link>
-            <router-link to="">About</router-link>
-            <router-link to="">Prompt</router-link>
-        </ul>
+    <div class="bg-gray-900 justify-between fixed z-50 flex items-center w-full h-23 text-white p-5">
+        <h1 @click="openMenu" class="font-bold text-[30px]">Lo<span class="text-lime-500">go</span></h1>
+        <div class="hidden md:block lg:block">
+            <ul class="flex gap-5">
+                <router-link to="" class="text-lime-500 transition duration-200">Home</router-link>
+                <router-link to="" class="hover:text-lime-500 transition duration-200">About</router-link>
+                <router-link to="" class="hover:text-lime-500 transition duration-200">Prompt</router-link>
+            </ul>
+        </div>
         <div class="flex gap-5 items-center">
-            <button @click="logout" class="text-white bg-red-500/50 border-2 border-red-500 hover:bg-red-500 rounded cursor-pointer transition duration-200 py-2 px-3">Logout</button>
-            <p>{{ user.name }}</p>
+            <div @click="openMenu" class="cursor-pointer">{{ user.name }} <i class='bx bx-chevron-down'></i></div>
         </div>
     </div>
+    <ul :class="isOpen ? 'translate-y-0' : '-translate-y-full'" class="flex text-white flex-col fixed z-40 transition duration-100 top-20 bg-gray-900 w-40 right-2 rounded border-4 border-gray-500">
+        <router-link to="" class="flex items-center gap-2 hover:bg-gray-800 px-3 py-3"><i class='bx bx-user-circle' ></i> Profile</router-link>
+        <router-link to="" class="flex items-center gap-2 hover:bg-gray-800 px-3 py-3"><i class='bx bx-cog' ></i> Profile</router-link>
+        <button @click="logout" class="flex items-center cursor-pointer gap-2 bg-red-800 hover:bg-red-700 px-3 py-3"><i class='bx bx-log-out' ></i> Logout</button>
+    </ul>
 </template>

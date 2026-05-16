@@ -16,15 +16,15 @@ const hideSession = () => {
 }
 
 const router = useRouter()
-const email = ref('')
+const username = ref('')
 const password = ref('')
 const message = ref('')
 
 const login = async () => {
     try {
-        const res = await axios.post('http://localhost:8000/api/login',
+        const res = await axios.post('http://localhost:8000/api/login/username',
             {
-                email: email.value,
+                username: username.value,
                 password: password.value
             }
         )
@@ -47,8 +47,8 @@ onMounted( () => {
         <div class="bg-gray-900 w-100 px-5 border-0 md:border-4 lg:border-4 border-gray-600 rounded focus-within:border-lime-500 transition duration-200 pb-8 pt-10">
             <div class="flex justify-center">
                 <div class="flex w-fit items-center mb-3 text-white font-normal rounded border-3 border-gray-500 justify-center text-[15px]">
-                    <router-link class="bg-lime-700 px-5 w-38 text-center py-3" to="/login">With Email</router-link>
-                    <router-link class="bg-gray-900 px-5 w-38 text-center py-3" to="/login/username">With Username</router-link>
+                    <router-link class="bg-gray-900 px-5 w-38 text-center py-3" to="/login">With Email</router-link>
+                    <router-link class="bg-lime-700 px-5 w-38 text-center py-3" to="/login/username">With Username</router-link>
                 </div>
             </div>
             <h1 class="text-[40px] mb-5 text-white font-bold text-center">Log<span class="text-lime-500">in</span></h1>
@@ -58,8 +58,8 @@ onMounted( () => {
             </div>
             <form @submit.prevent="login" action="" class="flex w-full flex-col gap-5 text-white">
                 <div class="flex flex-col gap-2">
-                    <label for="">Email <span class="text-orange-500">*</span></label>
-                    <input type="email" v-model="email" required class="flex-1 p-3 transition duration-200 rounded outline-2 outline-gray-500 focus:outline-2 focus:outline-lime-500" placeholder="example@email.com" name="" id="">
+                    <label for="">Username <span class="text-orange-500">*</span></label>
+                    <input type="text" v-model="username" required class="flex-1 p-3 transition duration-200 rounded outline-2 outline-gray-500 focus:outline-2 focus:outline-lime-500" placeholder="Username" name="" id="">
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="">Password <span class="text-orange-500">*</span></label>

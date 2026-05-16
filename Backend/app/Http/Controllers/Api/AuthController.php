@@ -29,6 +29,26 @@ class AuthController extends Controller
             'user' => $user
         ]);
     }
+    public function login_username(Request $request) {
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        if (!Auth::attempt($credentials)) {
+            return response()->json([
+                'message' => 'Incorrect Username or Password'
+            ], 401);
+        }
+
+        $user = Auth::user();
+        $token = $user->createToken('auth-sanctum')->plainTextToken;
+
+        return response()->json([
+            'token' => $token,
+            'user' => $user
+        ]);
+    }
 
     public function logout(Request $request) {
         $request->user()->currentAccessToken()->delete();
@@ -40,7 +60,7 @@ class AuthController extends Controller
     public function register(Request $request) {
         $request->validate([
             'name' => 'required',
-            'username' => 'required',
+            'username' => 'required|unique:users,username',
             'email' => 'required|email|unique:users,email',
             'phone_number' => 'required',
             'password' => 'required'

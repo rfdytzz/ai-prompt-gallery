@@ -31,7 +31,7 @@ const getData = async () => {
 }
 
 const logout = async () => {
-    const result = Swal.fire({
+    const result = await Swal.fire({
         title: "Are you sure?",
         text: "You wan't to logout?",
         icon: "warning",
@@ -97,7 +97,7 @@ onMounted( () => {
             </div>
         </div>
     </div>
-    <ul :class="isOpen ? 'translate-y-0' : '-translate-y-full'" class="flex text-white flex-col fixed z-40 transition duration-100 top-20 bg-gray-900 w-40 right-0 border-gray-900">
+    <ul :class="isOpen ? 'translate-y-0' : '-translate-y-full'" class="flex  text-white flex-col fixed z-40 transition duration-100 top-19 bg-gray-900 w-40 right-0 border-lime-500 border-2">
         <router-link to="" class="flex items-center gap-2 hover:bg-gray-800 px-3 py-3"><i class='bx bx-user-circle' ></i> Profile</router-link>
         <router-link to="" class="flex items-center gap-2 hover:bg-gray-800 px-3 py-3"><i class='bx bx-cog' ></i> Settings</router-link>
         <button @click="logout" class="flex items-center cursor-pointer gap-2 bg-red-800 hover:bg-red-700 px-3 py-3"><i class='bx bx-log-out' ></i> Logout</button>

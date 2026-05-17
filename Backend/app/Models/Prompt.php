@@ -15,4 +15,8 @@ class Prompt extends Model
     public function tag() {
         return $this->belongsTo(Tag::class);
     }
+
+    public function author() {
+        return $this->belongsTo(User::class);
+    }
 }

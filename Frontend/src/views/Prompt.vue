@@ -22,6 +22,11 @@ const getData = async () => {
     }
 }
 
+const click = async (text) => {
+    await navigator.clipboard.writeText(text)
+    return alert('Copied')
+}
+
 onMounted ( () => {
     getData()
 })
@@ -31,33 +36,35 @@ onMounted ( () => {
 <template>
     <Nav />
     <div class="w-full pt-18 h-screen">
-        <div class="flex flex-col gap-5 justify-center items-center py-10 bg-gray-900 text-white">
+        <div class="flex flex-col gap-5 justify-center items-center py-10 bg-white text-gray-900">
             <p class="text-[30px] font-bold">All Prompt</p>
-            <form action="" class="flex items-center flex-col gap-5">
+            <form action="" class="flex items-center flex-row gap-5">
                 <div class="flex">
                     <input v-model="search" type="text" class="p-3 w-150 focus:outline-lime-500 shadow outline-2 outline-gray-500 rounded bg-white text-black" placeholder="Search..." name="" id="">
                 </div>
-                <div class="flex gap-4">
-                    <div class="bg-white focus-within:outline-2 focus-within:outline-lime-500 items-center pr-2 text-black">
-                        <select name="" class="p-3 focus:outline-0" id="">
-                            <option value="">Select Category</option>
-                            <option value="">Image Generation</option>
-                        </select>
-                    </div>
-                    <button class="bg-lime-500 py-3 px-4 cursor-pointer">Filter</button>
-                </div>
             </form>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-10 w-full justify-items-center">
-            <div v-for="(item, index) in data.filter(i => i.title.toLowerCase().includes(search.toLowerCase()))" @input="getData" :key="index" class="w-76 mb-5 shadow transition rounded duration-200 hover:shadow-xl">
-                <div class="w-full h-32 overflow-hidden">
-                    <img src="/img/prompt.jpeg" class="w-full h-full object-cover transition duration-300 hover:scale-110">
+        <div class="grid-cols-4 grid justify-items-center">
+            <div :key="index" v-for="(item, index) in data.filter(i => i.category.category.toLowerCase().includes('image generation') && i.title.toLowerCase().includes(search.toLowerCase()))" class="flex-col w-82 mb-5 overflow-hidden p-4 rounded shadow hover:shadow-2xl transition-all duration-200 flex">
+                <div class="flex gap-5 mb-5 max-w-full items-center justify-between">
+                    <h2 class="font-bold text-[20px] w-40">{{ item.title }}</h2>
+                    <p class="rounded-xl p-1 text-[12px] font-bold text-white border-2 border-lime-500 bg-lime-500/50">{{ item.category.category }}</p>
                 </div>
-                <div class="p-3 flex flex-col pb-7">
-                    <p class="text-[13px] text-end">@{{ item.author.username }}</p>
-                    <h5 class="font-bold text-[18px] mb-2">{{ item.title }}</h5>
-                    <p class="mb-5 text-[13px]">{{ item.description }}</p>
-                    <router-link to="" class="px-1 py-2 text-center hover:bg-lime-400 transition duration-200 rounded text-white flex-1 bg-lime-500">Use Prompt</router-link>
+                <img src="/img/prompt.jpeg" class="hover:scale-105 mb-5 w-full h-full rounded transition duration-200" alt="">
+                <p class="max-w-full mb-5 font-bold">{{ item.description }}</p>
+                <p class="p-3 bg-gray-300/50 mb-5 border-gray-300 border-2 rounded bo">{{ item.prompt }}</p>
+                <div class="flex justify-between items-center">
+                    <div @click="click(item.prompt, index)" class="p-2 bg-lime-500/50 flex gap-2 items-center w-fit text-lime-700 border-2 cursor-pointer transition shadow hover:shadow-xl duration-200 rounded border-lime-500">
+                        <i class='bx bx-copy-alt'></i><p class="font-bold text-lime-700">Copy Prompt</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <div class="flex items-center justify-center gap-1 p-2 bg-lime-500/50 border-2 border-lime-500 rounded-xl cursor-pointer text-lime-700 transition duration-200 shadow hover:shadow-2xl">
+                            <i class='bx bx-like text-[20px]' ></i>112
+                        </div>
+                        <div class="flex items-center justify-center p-2 bg-yellow-500/50 border-2 border-yellow-500 rounded-xl cursor-pointer text-yellow-700 transition duration-200 shadow hover:shadow-2xl">
+                            <i class='bx bx-share text-[20px]' ></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

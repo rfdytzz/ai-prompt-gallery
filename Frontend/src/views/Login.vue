@@ -45,12 +45,12 @@ const hideMessage = () => {
             <div :class="isMessage ? 'block' : 'hidden'" v-if="message" class="p-4 mt-5 bg-red-100 rounded-xl text-red-700 flex items-center justify-between">{{ message }}<i class='bx bx-x text-[20px] cursor-pointer' @click="hideMessage" ></i></div>
             <form @submit.prevent="login" action="" class="mt-5 flex-col flex gap-5">
                 <div class="flex-col flex gap-3">
-                    <label for="email" class="text-[18px]">Email <span class="text-orange-500">*</span></label>
+                    <label for="email" class="text-[15px]">Email <span class="text-orange-500">*</span></label>
                     <input v-model="email" required placeholder="example@email.com" type="email" name="email" class="p-3 bg-gray-100 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                     <p class="text-[13px] text-gray-500">Use your registered email</p>
                 </div>
                 <div class="flex-col flex gap-3">
-                    <label for="email" class="text-[18px]">Password <span class="text-orange-500">*</span></label>
+                    <label for="email" class="text-[15px]">Password <span class="text-orange-500">*</span></label>
                     <div class="flex pr-3 items-center justify-between bg-gray-100 focus-within:bg-white transition duration-200 ring-1 rounded-xl ring-gray-200 focus-within:ring-blue-500 gap-1">
                         <input v-model="password" required placeholder="󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏" minlength="8" :type="isShow ? 'text' : 'password'" name="password" class="p-3 focus:outline-0 flex-1" id="">
                         <i @click="showHidePassword" :class="isShow ? 'bx-show' : 'bx-hide'" class='bx text-[22px] cursor-pointer'></i>

@@ -45,7 +45,7 @@ onMounted ( () => {
             </form>
         </div>
         <div class="grid-cols-4 grid justify-items-center">
-            <div :key="index" v-for="(item, index) in data.filter(i => i.category.category.toLowerCase().includes('image generation') && i.title.toLowerCase().includes(search.toLowerCase()))" class="flex-col w-82 mb-5 overflow-hidden p-4 rounded shadow hover:shadow-2xl transition-all duration-200 flex">
+            <div v-for="(item, index) in data.filter(i => i.title.toLowerCase().includes(search.toLowerCase()))" class="flex-col w-82 mb-5 overflow-hidden p-4 rounded shadow hover:shadow-2xl transition-all duration-200 flex">
                 <div class="flex gap-5 mb-5 max-w-full items-center justify-between">
                     <h2 class="font-bold text-[20px] w-40">{{ item.title }}</h2>
                     <p class="rounded-xl p-1 text-[12px] font-bold text-white border-2 border-lime-500 bg-lime-500/50">{{ item.category.category }}</p>

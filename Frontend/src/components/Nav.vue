@@ -30,29 +30,20 @@ const getData = async () => {
     }
 }
 
+const message = ref('')
+
 const logout = async () => {
-    const result = await Swal.fire({
-        title: "Are you sure?",
-        text: "You wan't to logout?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, Logout!"
-        })
-    if (!result.isConfirmed) {
-        return 
-    }
     try {
         const token = localStorage.getItem('token')
-        await axios.post('http://localhost:8000/api/logout',
+        const res = await axios.post('http://localhost:8000/api/logout',
             {},
             {
                 headers: {
-                    Authorization: `bearer ${token}`
+                    Authorization: `Bearer ${token}`
                 }
             }
         )
+        message.value = res.data.message
         localStorage.removeItem('token')
         router.push('/login')
     } catch (error) {

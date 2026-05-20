@@ -2,7 +2,7 @@
 import Nav from '@/components/Nav.vue';
 import { onMounted } from 'vue';
 onMounted(() => {
-    document.title = 'Home | DwayPrompts'
+    document.title = 'About | DwayPrompts'
 })
 </script>
 

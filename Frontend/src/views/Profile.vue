@@ -1,7 +1,11 @@
 <script setup>
 import Nav from '@/components/Nav.vue';
-import { ref } from 'vue';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+onMounted(() => {
+    document.title = 'Profile | DwayPrompts'
+})
 
 const route = useRoute()
 const imageUrl = ref(null)
@@ -12,6 +16,33 @@ const previewPicture = (event) => {
     }
 }
 
+const name = ref('')
+const username = ref('')
+const email = ref('')
+const phone_number = ref('')
+const getData = async () => {
+    try {
+        const token = localStorage.getItem('token')
+        const res = await axios.get('http://localhost:8000/api/user',
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
+        name.value = res.data.name
+        username.value = res.data.username
+        email.value = res.data.email
+        phone_number.value = res.data.phone_number
+        console.log(res.data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+onMounted(() => {
+    getData()
+})
 </script>
 
 <template>
@@ -48,27 +79,27 @@ const previewPicture = (event) => {
                         </div>
                         <div class="flex flex-col -mt-2 md:flex-row gap-5">
                             <div class="w-full flex flex-col gap-4 mt-0 md:mt-5">
-                                <label for="">Name</label>
+                                <label for="">Name <span class="text-orange-500">*</span></label>
                                 <input v-model="name" required placeholder="Rafka Dyta" type="email" name="email" class="p-3 bg-gray-100 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                             </div>
                             <div class="w-full flex flex-col gap-4 mt-0 md:mt-5">
-                                <label for="">Username</label>
+                                <label for="">Username <span class="text-orange-500">*</span></label>
                                 <input v-model="username" required placeholder="dpraf51" type="email" name="email" class="p-3 bg-gray-100 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                             </div>
                         </div>
                         <div class="flex flex-col -mt-2 md:flex-row gap-5">
                             <div class="w-full flex flex-col gap-4 mt-0 md:mt-2">
-                                <label for="">Email</label>
-                                <input v-model="email" required placeholder="example@mail.com" type="email" name="email" class="p-3 bg-gray-100 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
+                                <label for="">Email <span class="text-orange-500">*</span></label>
+                                <input disabled v-model="email" required placeholder="example@mail.com" type="email" name="email" class="p-3 bg-gray-100 focus:bg-white transition duration-200 text-gray-400 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                             </div>
                             <div class="w-full flex flex-col gap-4 mt-0 md:mt-2">
                                 <label for="">Phone Number</label>
-                                <input v-model="phone_number" required placeholder="+62 812-3456-7890" type="email" name="email" class="p-3 bg-gray-100 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
+                                <input disabled v-model="phone_number" required placeholder="+62 812-3456-7890" type="email" name="email" class="p-3 bg-gray-100 focus:bg-white transition text-gray-400 duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                             </div>
                         </div>
                         <div class="w-full flex flex-col gap-4 mt-0 md:mt-2">
                             <label for="">Bio</label>
-                            <input v-model="phone_number" required placeholder="Your bio" type="email" name="email" class="p-3 bg-gray-100 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
+                            <input required placeholder="Your bio" type="email" name="email" class="p-3 bg-gray-100 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                         </div>
                         <button class="w-fit bg-blue-500/50 border-2 border-blue-500 cursor-pointer transition duration-200 hover:bg-blue-500 hover:text-white px-3 py-2 rounded-xl text-blue-700 flex flex-col gap-4 mt-5 md:mt-5">
                             Save Changes

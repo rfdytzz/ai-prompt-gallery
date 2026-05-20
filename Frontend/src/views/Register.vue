@@ -47,7 +47,7 @@ const register = async () => {
 
 <template>
     <div class="w-full h-fit py-10 items-center justify-center flex flex-col">
-        <div class="bg-white gap-5 px-11 md:px-5 lg:px-5 py-10 w-130 text-black shadow-none md:shadow lg:shadow focus-within:shadow-none md:focus-within:shadow-xl lg:focus-within:shadow-xl transition duration-200">
+        <div class="bg-white gap-5 px-20 md:px-5 lg:px-5 py-2 md:py-10 w-130 text-black shadow-none md:shadow lg:shadow focus-within:shadow-none md:focus-within:shadow-xl lg:focus-within:shadow-xl transition duration-200">
             <h1 class="font-bold text-[34px] text-center text-blue-600">Register</h1>
             <div :class="isMessage ? 'block' : 'hidden'" v-if="message" class="p-4 mt-5 bg-red-100 rounded-xl text-red-700 flex items-center justify-between">{{ message }}<i class='bx bx-x text-[20px] cursor-pointer' @click="hideMessage" ></i></div>
             <form @submit.prevent="register" action="" class="mt-5 flex-col flex gap-5">
@@ -86,7 +86,7 @@ const register = async () => {
                 <div class="flex -mt-2 gap-2">
                     <label for="terms" class="flex gap-2 items-center">
                         <input required id="terms" type="checkbox" class="w-3 h-3">
-                        <p class="text-[14px]">I agree with the <a class="text-blue-500 hover:underline" href="">terms and conditions</a></p>
+                        <p class="text-[14px]">I agree with the <router-link to="/ToS" class="text-blue-500 hover:underline" href="">terms and conditions</router-link></p>
                     </label>
                 </div>
 

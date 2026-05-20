@@ -2,6 +2,10 @@
 import Nav from '@/components/Nav.vue';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { onMounted } from 'vue';
+onMounted(() => {
+    document.title = 'Settings | DwayPrompts'
+})
 
 const route = useRoute()
 const imageUrl = ref(null)

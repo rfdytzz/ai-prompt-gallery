@@ -2,14 +2,14 @@
 import { onMounted } from 'vue';
 
 onMounted(() => {
-    document.title = 'Terms of Service'
+    document.title = 'Terms of Service | Dway Prompts'
 })
 </script>
 
 <template>
-  <div class="w-full h-fit py-0 md:py-10 lg:py-10 flex items-center justify-center bg-gray-900">
-    <div class="bg-gray-800 p-5 rounded border-4 border-gray-700 text-white">
-        <router-link to="/register" class="text-lime-500 hover:underline">Back</router-link>
+  <div class="w-full h-fit py-0 md:py-10 lg:py-10 flex items-center justify-center bg-white">
+    <div class="bg-white shadow-2xl rounded-xl text-black p-10 border-gray-700">
+        <router-link to="/register" class="text-blue-500 hover:underline">Back</router-link>
       <h1 class="font-bold text-[30px] text-center">Terms Of Service</h1>
       <p class="italic text-[15px] text-center">Last updated: May, 16 2026</p>
       <p class="mb-3 mt-7">

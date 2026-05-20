@@ -81,17 +81,17 @@ onMounted( () => {
             </div>
             <div class="block md:hidden lg:hidden">
                 <button @click="openSidebar" class="flex flex-col gap-2 cursor-pointer">
-                    <span class="h-0.5 w-6 bg-white"></span>
-                    <span class="h-0.5 w-6 bg-white"></span>
-                    <span class="h-0.5 w-6 bg-white"></span>
+                    <span class="h-0.5 w-6 bg-black"></span>
+                    <span class="h-0.5 w-6 bg-black"></span>
+                    <span class="h-0.5 w-6 bg-black"></span>
                 </button>
             </div>
         </div>
     </div>
-    <ul :class="isOpen ? 'block' : 'hidden'" class="flex  text-black flex-col fixed z-40 transition duration-100 top-21 shadow-xl ring-1 ring-gray-200 bg-white w-40 right-5 rounded-xl">
-        <router-link to="" class="flex items-center gap-2 hover:bg-gray-100 px-3 py-3"><i class='bx bx-user-circle' ></i> Profile</router-link>
+    <ul :class="isOpen ? 'block' : 'hidden'" class="flex  text-black flex-col fixed z-50 transition duration-100 top-16 shadow-xl ring-1 ring-gray-200 bg-white w-40 right-5 rounded-xl">
+        <router-link to="/profile" class="flex items-center gap-2 hover:bg-gray-100 px-3 py-3"><i class='bx bx-user-circle' ></i> Profile</router-link>
         <router-link to="" class="flex items-center gap-2 hover:bg-gray-100 px-3 py-3"><i class='bx bx-cog' ></i> Settings</router-link>
-        <button @click="logout" class="flex items-center text-white cursor-pointer gap-2 bg-red-800 hover:bg-red-700 px-3 py-3 rounded-xl"><i class='bx bx-log-out' ></i> Logout</button>
+        <button @click="logout" class="flex items-center text-red-500 gap-2 hover:bg-gray-100 px-3 py-3 cursor-pointer"><i class='bx bx-log-out' ></i> Logout</button>
     </ul>
     <div :class="sidebar ? 'translate-x-0' : '-translate-x-full'" class="w-64 fixed h-screen text-white transition duration-200 bg-gray-900 pt-30 p-5">
         <ul class="flex flex-col gap-2">

@@ -64,13 +64,13 @@ onMounted( () => {
 </script>
 
 <template>
-    <div class="bg-gray-900 border-b-2 border-lime-500 justify-between fixed z-50 flex items-center w-full h-20 text-white p-5">
-        <h1 @click="openMenu" class="font-bold text-[30px]">Lo<span class="text-lime-500">go</span></h1>
+    <div class="bg-white text-black shadow justify-between fixed z-50 flex items-center w-full h-20 p-5">
+        <h1 @click="openMenu" class="font-bold text-[30px]">Lo<span class="text-blue-500">go</span></h1>
         <div class="hidden md:block lg:block">
             <ul class="flex gap-5">
-                <router-link to="/" class="hover:text-lime-500 transition duration-200" :class="route.path === '/' ? 'text-lime-500' : ''">Home</router-link>
-                <router-link to="" class="hover:text-lime-500 transition duration-200" :class="route.path === '/about' ? 'text-lime-500' : ''">About</router-link>
-                <router-link to="/prompt" class="hover:text-lime-500 transition duration-200" :class="route.path === '/prompt' ? 'text-lime-500' : ''">Prompt</router-link>
+                <router-link to="/" class="hover:bg-gray-100 px-2 rounded-xl py-1 transition duration-200" :class="route.path === '/' ? 'bg-gray-100' : ''">Home</router-link>
+                <router-link to="/about" class="hover:bg-gray-100 px-2 rounded-xl py-1 transition duration-200" :class="route.path === '/about' ? 'bg-gray-100' : ''">About</router-link>
+                <router-link to="/prompt" class="hover:bg-gray-100 px-2 rounded-xl py-1 transition duration-200" :class="route.path === '/prompt' ? 'bg-gray-100' : ''">Prompt</router-link>
             </ul>
         </div>
         <div class="flex gap-2 items-center">
@@ -88,10 +88,10 @@ onMounted( () => {
             </div>
         </div>
     </div>
-    <ul :class="isOpen ? 'translate-y-0' : '-translate-y-full'" class="flex  text-white flex-col fixed z-40 transition duration-100 top-19 bg-gray-900 w-40 right-0 border-lime-500 border-2">
-        <router-link to="" class="flex items-center gap-2 hover:bg-gray-800 px-3 py-3"><i class='bx bx-user-circle' ></i> Profile</router-link>
-        <router-link to="" class="flex items-center gap-2 hover:bg-gray-800 px-3 py-3"><i class='bx bx-cog' ></i> Settings</router-link>
-        <button @click="logout" class="flex items-center cursor-pointer gap-2 bg-red-800 hover:bg-red-700 px-3 py-3"><i class='bx bx-log-out' ></i> Logout</button>
+    <ul :class="isOpen ? 'block' : 'hidden'" class="flex  text-black flex-col fixed z-40 transition duration-100 top-21 shadow-xl ring-1 ring-gray-200 bg-white w-40 right-5 rounded-xl">
+        <router-link to="" class="flex items-center gap-2 hover:bg-gray-100 px-3 py-3"><i class='bx bx-user-circle' ></i> Profile</router-link>
+        <router-link to="" class="flex items-center gap-2 hover:bg-gray-100 px-3 py-3"><i class='bx bx-cog' ></i> Settings</router-link>
+        <button @click="logout" class="flex items-center text-white cursor-pointer gap-2 bg-red-800 hover:bg-red-700 px-3 py-3 rounded-xl"><i class='bx bx-log-out' ></i> Logout</button>
     </ul>
     <div :class="sidebar ? 'translate-x-0' : '-translate-x-full'" class="w-64 fixed h-screen text-white transition duration-200 bg-gray-900 pt-30 p-5">
         <ul class="flex flex-col gap-2">

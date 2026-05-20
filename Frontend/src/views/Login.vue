@@ -9,6 +9,7 @@ const showHidePassword = () => {
     isShow.value = !isShow.value
 }
 
+const show = ref(false)
 const router = useRouter()
 const email = ref('')
 const password = ref('')
@@ -26,23 +27,26 @@ const login = async () => {
         console.log(res.data) 
     } catch (error) {
         // console.log(error)
+        show.value = true
         console.log(error?.response?.data?.message)
         message.value = error?.response?.data?.message
     }
 }
-
-const isMessage = ref(true)
 const hideMessage = () => {
-    isMessage.value = !isMessage.value
+    show.value = false
 }
 
 </script>
 
 <template>
     <div class="w-full h-screen items-center justify-center flex flex-col">
-        <div class="bg-white gap-5 px-11 md:px-5 lg:px-5 py-10 w-110 text-black shadow-none md:shadow lg:shadow focus-within:shadow-none md:focus-within:shadow-xl lg:focus-within:shadow-xl transition duration-200">
+        <div class="bg-white gap-5 px-11 pt-5 py-5 md:px-5 lg:px-5 pb-10 w-110 text-black shadow-none md:shadow lg:shadow focus-within:shadow-none md:focus-within:shadow-xl lg:focus-within:shadow-xl transition duration-200">
+            <div class="mb-5 bg-white justify-center w-full rounded-xl flex shadow">
+                <router-link to="/login" class="bg-gray-100 shadow-xl flex-1 p-3 text-center">With Email</router-link>
+                <router-link to="/login/username" class="p-3 flex-1 text-center">With Username</router-link>
+            </div>
             <h1 class="font-bold text-[34px] text-center text-blue-600">Login</h1>
-            <div :class="isMessage ? 'block' : 'hidden'" v-if="message" class="p-4 mt-5 bg-red-100 rounded-xl text-red-700 flex items-center justify-between">{{ message }}<i class='bx bx-x text-[20px] cursor-pointer' @click="hideMessage" ></i></div>
+            <div v-if="show" class="p-4 mt-5 bg-red-100 rounded-xl text-red-700 flex items-center justify-between">{{ message }}<i class='bx bx-x text-[20px] cursor-pointer' @click="hideMessage" ></i></div>
             <form @submit.prevent="login" action="" class="mt-5 flex-col flex gap-5">
                 <div class="flex-col flex gap-3">
                     <label for="email" class="text-[15px]">Email <span class="text-orange-500">*</span></label>
@@ -58,7 +62,7 @@ const hideMessage = () => {
                     <p class="text-[13px] text-gray-500">Password must be at least 8 characters</p>
                 </div>
 
-                <button class="font-bold text-[20px] mt-5 p-2 rounded-xl bg-blue-500 hover:bg-blue-400 transition duration-100 text-white cursor-pointer">Login</button>
+                <button type="submit" class="font-bold text-[20px] mt-5 p-2 rounded-xl bg-blue-500 hover:bg-blue-400 transition duration-100 text-white cursor-pointer">Login</button>
                 <p class="text-[15px] text-gray-900 text-center">Dont have an account? <router-link to="/register" class="text-blue-500 hover:underline">Register</router-link></p>
             </form>
         </div>

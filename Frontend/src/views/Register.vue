@@ -83,6 +83,12 @@ const register = async () => {
                     </div>
                     <p class="text-[13px] text-gray-500">Password must be at least 8 characters</p>
                 </div>
+                <div class="flex -mt-2 gap-2">
+                    <label for="terms" class="flex gap-2 items-center">
+                        <input required id="terms" type="checkbox" class="w-3 h-3">
+                        <p class="text-[14px]">I agree with the <a class="text-blue-500 hover:underline" href="">terms and conditions</a></p>
+                    </label>
+                </div>
 
                 <button class="font-bold text-[20px] mt-5 p-2 rounded-xl bg-blue-500 hover:bg-blue-400 transition duration-100 text-white cursor-pointer">Register</button>
                 <p class="text-[15px] text-gray-900 text-center">have an account? <router-link to="/login" class="text-blue-500 hover:underline">Login</router-link></p>

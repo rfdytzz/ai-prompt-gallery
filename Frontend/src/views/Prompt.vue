@@ -107,7 +107,7 @@ onMounted ( () => {
                 </div>
                 </div>
                 <div class="flex px-5 justify-between">
-                    <button @click="copyPrompt(item.prompt, index)" class="p-3 text-[13px] h-fit ring-1 ring-blue-500 cursor-pointer rounded-xl text-blue-700 bg-blue-500/50">{{ isCopied === index ? 'Copied!' : 'Copy Prompt' }}</button>
+                    <button @click="copyPrompt(item.prompt, index)" class="p-3 text-[13px] h-fit ring-1 ring-blue-500 cursor-pointer rounded-xl text-white bg-blue-500">{{ isCopied === index ? 'Copied!' : 'Copy Prompt' }}</button>
                     <button class="p-3 ring-1 ring-blue-500 cursor-pointer gap-1 rounded-xl h-fit text-[13px] text-blue-700 bg-blue-500/50 flex items-center justify-center"><i class='bx bx-like text-[17px]'></i> 100K</button>
                 </div>
             </div>

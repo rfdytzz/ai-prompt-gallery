@@ -23,6 +23,7 @@ const login = async () => {
             }
         )
         localStorage.setItem('token', res.data.token)
+        localStorage.setItem('name', res.data.user.name)
         router.push('/')
     } catch (error) {
         show.value = true

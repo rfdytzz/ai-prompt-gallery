@@ -1,4 +1,5 @@
 import About from '@/views/About.vue'
+import ChangePassword from '@/views/ChangePassword.vue'
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
 import Login_username from '@/views/Login_username.vue'
@@ -19,6 +20,7 @@ const router = createRouter({
     { path: '/about', component: About },
     { path: '/profile', component: Profile, meta: {auth: true}},
     { path: '/settings', component: Settings, meta: {auth: true}},
+    { path: '/change-password', component: ChangePassword, meta: {auth: true}},
     { path: '/ToS', component: TermsOfService },
     { path: '/prompt', component: Prompt },
   ],

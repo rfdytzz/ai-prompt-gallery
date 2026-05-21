@@ -2,16 +2,20 @@
 import axios from 'axios';
 import { computed, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import Swal from 'sweetalert2'
 
 const name = ref('')
 const displayName = computed(() => {
     return name.value.split(' ')[0];
 })
+
 console.log(displayName)
 const route = useRoute()
 const router = useRouter()
 
+const initial = ref('')
+const defaultAvatar = computed(() => {
+    return initial.value.split('')[0]
+})
 const sidebar = ref(false)
 const openSidebar = () => {
     sidebar.value = !sidebar.value
@@ -29,6 +33,7 @@ const getData = async () => {
         )
         // console.log(res.data)
         name.value = res.data.name;
+        initial.value = res.data.name
     } catch (error) {
         console.log(error)
     }
@@ -80,7 +85,12 @@ onMounted( () => {
         <div class="flex gap-2 items-center">
             <div class="hidden md:block lg:block">
                 <div @click="openMenu" class="flex cursor-pointer gap-2 rounded-full bg-gray-100 px-3 py-2 items-center">
-                    <div class="cursor-pointer"><img src="/public/img/sampleman.jpg" class="size-10 rounded-full" alt=""></div>
+                    <div class="cursor-pointer flex gap-5 items-center">
+                        <!-- <img src="/public/img/sampleman.jpg" class="size-10 rounded-full" alt=""> -->
+                        <p class="h-5 flex items-center shadow p-5 bg-white rounded-full justify-center text-[20px] w-5">
+                            {{ defaultAvatar }}
+                        </p>
+                    </div>
                     <div class="cursor-pointer hidden"><i class='bx bx-user-circle text-[53px] mt-1'></i></div>
                     <p>{{ displayName }}</p>
                 </div>

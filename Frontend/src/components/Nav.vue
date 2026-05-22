@@ -74,12 +74,12 @@ onMounted( () => {
 
 <template>
     <div class="bg-white text-black shadow justify-between fixed z-50 flex items-center w-full h-20 p-5">
-        <h1 @click="openMenu" class="font-bold text-[30px]">Lo<span class="text-blue-500">go</span></h1>
+        <h1 class="font-bold text-[30px]"><span class="text-blue-500">D</span>way</h1>
         <div class="hidden md:block lg:block">
             <ul class="flex gap-5">
-                <router-link to="/" class="hover:bg-gray-100 px-2 rounded-xl py-1 transition duration-200" :class="route.path === '/' ? 'bg-gray-100' : ''">Home</router-link>
-                <router-link to="/prompt" class="hover:bg-gray-100 px-2 rounded-xl py-1 transition duration-200" :class="route.path === '/prompt' ? 'bg-gray-100' : ''">Prompt</router-link>
-                <router-link to="/about" class="hover:bg-gray-100 px-2 rounded-xl py-1 transition duration-200" :class="route.path === '/about' ? 'bg-gray-100' : ''">About</router-link>
+                <router-link to="/" class="hover:bg-gray-100 px-2 rounded py-1 transition duration-200" :class="route.path === '/' ? 'bg-gray-100' : ''">Home</router-link>
+                <router-link to="/prompt" class="hover:bg-gray-100 px-2 rounded py-1 transition duration-200" :class="route.path === '/prompt' ? 'bg-gray-100' : ''">Prompt</router-link>
+                <router-link to="/about" class="hover:bg-gray-100 px-2 rounded py-1 transition duration-200" :class="route.path === '/about' ? 'bg-gray-100' : ''">About</router-link>
             </ul>
         </div>
         <div class="flex gap-2 items-center">
@@ -96,10 +96,13 @@ onMounted( () => {
                 </div>
             </div>
             <div class="block md:hidden lg:hidden">
-                <button @click="openSidebar" class="flex flex-col gap-2 cursor-pointer">
-                    <span class="h-0.5 w-6 bg-black"></span>
-                    <span class="h-0.5 w-6 bg-black"></span>
-                    <span class="h-0.5 w-6 bg-black"></span>
+                <button v-if="sidebar === false" @click="openSidebar" class="flex rounded-full items-center justify-center hover:bg-gray-100 p-3 flex-col gap-2 cursor-pointer">
+                    <span  class="h-0.5 w-6 bg-black"></span>
+                    <span  class="h-0.5 w-6 bg-black"></span>
+                    <span  class="h-0.5 w-6 bg-black"></span>
+                </button>
+                <button v-else @click="openSidebar" class="flex items-center justify-center hover:bg-gray-200 p-2 rounded-full flex-col gap-2 cursor-pointer">
+                    <i class='bx bx-x text-[30px]' ></i>
                 </button>
             </div>
         </div>
@@ -110,7 +113,7 @@ onMounted( () => {
         <button @click="logout" class="flex items-center hover:bg-red-500/20 rounded-b-xl text-red-500 gap-2 px-3 py-3 cursor-pointer"><i class='bx bx-log-out' ></i> Logout</button>
     </ul>
     <div :class="sidebar ? 'block' : 'hidden'" class="inset-0 fixed bg-black/50 z-30" @click="openSidebar"></div>
-    <div :class="sidebar ? 'translate-x-0' : '-translate-x-full'" class="w-64 fixed h-screen text-black transition duration-200 z-40 bg-white pt-30 p-5">
+    <div :class="sidebar ? 'translate-x-0' : 'translate-x-full'" class="w-64 fixed right-0 h-screen text-black transition duration-200 z-40 bg-white pt-30 p-5">
         <ul class="flex flex-col gap-2">
             <router-link class="text-[20px] p-3 rounded-xl hover:bg-gray-100" :class="route.path === '/' ? 'bg-gray-100' : ''" to="/">Home</router-link>
             <router-link class="text-[20px] p-3 rounded-xl hover:bg-gray-100" :class="route.path === '/prompt' ? 'bg-gray-100' : ''" to="/prompt">Prompt</router-link>

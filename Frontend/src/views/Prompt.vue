@@ -34,6 +34,11 @@ const copyPrompt = (prompt, index) => {
     isCopied.value = index
 }
 
+const isLike = ref(false)
+const like = () => {
+    isLike.value = !isLike.value
+}
+
 onMounted ( () => {
     getData()
 })
@@ -72,7 +77,7 @@ onMounted ( () => {
     <Nav />
     <div class="w-full pt-18 h-screen">
         <div class="flex px-10 flex-col w-full gap-5 justify-center items-center py-10 bg-white text-black">
-            <h2 class="text-[32px] font-bold">All Prompt</h2>
+            <h2 class="text-[32px] font-bold =">All Prompt</h2>
             <input type="search" v-model="search" placeholder="Search Prompt, Author and Category" class="flex-1 w-200 focus:ring-blue-500 max-w-full ring-1 px-3 transition duration-200 rounded-xl ring-gray-400 bg-gray-100 focus:bg-white py-3 focus:outline-0" name="" id="">
             <div class="flex gap-3 w-full md:w-200 items-center">
                 <div class="px-3 bg-blue-500 hover:bg-blue-500 hover:text-white text-white rounded-xl cursor-pointer py-2">Latest</div>
@@ -81,11 +86,15 @@ onMounted ( () => {
             </div>
         </div>
         <hr class="mb-5 text-gray-300">
-        <div v-if="loading" class="w-full gap-2 flex h-100 items-center justify-center">
-        <div class="loader"></div> Loading
+        <div v-if="loading" class="fixed inset-0 z-30 bg-white flex gap-5 items-center justify-center">
+            <div class="loader"></div>
+            <h1 class="font-bold text-[50px] animate-pulse"><span class="text-blue-500">D</span>way</h1>
         </div>
+        <!-- <div v-if="loading" class="w-full gap-2 flex h-100 items-center justify-center">
+        <div class="loader"></div> Loading
+        </div> -->
         <div class="md:grid-cols-4 pb-10 grid-cols-1 grid gap-5 justify-items-center px-5 md:px-10">
-            <div @input="getData" v-for="(item, index) in data.filter(i => i.title.toLowerCase().includes(search.toLowerCase()) || i.category.category.toLowerCase().includes(search.toLowerCase()) || i.author.username.toLowerCase().includes(search.toLowerCase()))" class="flex-col w-full overflow-hidden h-fit pb-5 rounded-xl shadow hover:shadow-xl transition-all duration-200 flex">
+            <div @input="getData" v-for="(item, index) in data.filter(i => i.title.toLowerCase().includes(search.toLowerCase()) || i.category.category.toLowerCase().includes(search.toLowerCase()) || i.author.username.toLowerCase().includes(search.toLowerCase()))" class="flex-col w-full overflow-hidden h-fit pb-5 rounded-2xl shadow hover:shadow-xl transition-all duration-200 flex">
                 <div class="relative w-full px-2 py-2 justify-between flex h-fit z-10 bg-transparent">
                     <p class="text-[13px] px-2 py-1 rounded-xl text-white bg-green-500/50 w-fit">{{ item.category.category }}</p>
                     <p class="text-[13px] px-2 py-1 bg-white/80 rounded-xl rounded-x w-fit">@{{ item.author.username }}</p>
@@ -93,22 +102,19 @@ onMounted ( () => {
                 <div class="w-full">
                     <img src="/public/img/sample.jpg" class="hover:scale-115 -mt-11 transition duration-200" alt="">
                 </div>
-                <div class="p-5 bg-white relative z-10">
-                <p class="text-[20px]">
+                <div class=" bg-white relative z-10">
+                <p class="p-5 text-[20px]">
                     {{ item.title }}
                 </p>
-                <p class="text-[15px]">
-                    {{ item.description }}
-                </p>
-                <div class="p-2 mt-5 h-25 overflow-y-auto bg-white shadow rounded transition duration-200 hover:shadow-xl">
+                <div class="p-2 px-5 -mt-3 mb-3 h-22 overflow-y-auto bg-white rounded transition duration-200 ">
                 <p class="">
                     {{ item.prompt }}
                 </p>
                 </div>
                 </div>
                 <div class="flex px-5 justify-between">
-                    <button @click="copyPrompt(item.prompt, index)" class="p-3 text-[13px] h-fit ring-1 ring-blue-500 cursor-pointer rounded-xl text-white bg-blue-500">{{ isCopied === index ? 'Copied!' : 'Copy Prompt' }}</button>
-                    <button class="p-3 ring-1 ring-blue-500 cursor-pointer gap-1 rounded-xl h-fit text-[13px] text-blue-700 bg-blue-500/50 flex items-center justify-center"><i class='bx bx-like text-[17px]'></i> 100K</button>
+                    <button @click="copyPrompt(item.prompt, index)" class="p-3 text-[13px] font-semibold h-fit ring-1 ring-blue-500 cursor-pointer rounded-xl text-white bg-blue-500 flex gap-2 items-center"><i :class="isCopied === index ? 'bxs-copy-alt' : 'bx-copy-alt'" class='bx'></i>{{ isCopied === index ? 'Copied!' : 'Copy Prompt' }}</button>
+                    <button @click="like" class="p-3 ring-1 ring-green-500 cursor-pointer gap-1 rounded-xl h-fit text-[13px] text-white bg-green-500 flex items-center justify-center"><i :class="isLike === index ? 'bxs-like' : 'bx-like'" class='bx text-[17px]'></i></button>
                 </div>
             </div>
         </div>

@@ -87,11 +87,11 @@ onMounted( () => {
                 <div @click="openMenu" class="flex cursor-pointer gap-2 rounded-full bg-gray-100 px-3 py-2 items-center">
                     <div class="cursor-pointer flex gap-5 items-center">
                         <!-- <img src="/public/img/sampleman.jpg" class="size-10 rounded-full" alt=""> -->
-                        <p class="h-5 flex items-center shadow p-5 bg-white rounded-full justify-center text-[20px] w-5">
+                        <p class="h-5 flex items-center shadow p-4 bg-white rounded-full justify-center text-[15px] w-5">
                             {{ defaultAvatar }}
                         </p>
                     </div>
-                    <div class="cursor-pointer hidden"><i class='bx bx-user-circle text-[53px] mt-1'></i></div>
+                    <div class="cursor-pointer hidden"><i class='bx bx-user-circle mt-1'></i></div>
                     <p>{{ displayName }}</p>
                 </div>
             </div>

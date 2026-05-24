@@ -9,7 +9,7 @@ onMounted(() => {
 <template>
     <Nav />
     <div class="w-full pt-30 z-10 h-screen">
-        <section class="relative py-24 px-6 bg-linear-to-br from-blue-800 via-blue-700 to-blue-900 overflow-hidden">
+        <section class="relative py-24 px-6 bg-linear-to-br from-blue-400 via-blue-600 to-blue-800 overflow-hidden">
             <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30"></div>
                 <div class="relative max-w-4xl mx-auto text-center">
                 <div class="grid grid-cols-2 md:grid-cols-4 justify-center gap-1 md:gap-5">

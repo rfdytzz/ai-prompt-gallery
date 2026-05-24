@@ -101,11 +101,11 @@ onMounted(() => {
                         <h2 class="font-bold text-[30px]">Profile</h2>
                         <p>Your Profile</p>
                     </div>
-                    <div v-if="message" class="p-3 flex items-center justify-between text-green-700 bg-green-500/50 rounded-xl">
+                    <div v-if="message" class="p-3 flex items-center justify-between text-green-700 bg-green-500/20 rounded-xl">
                         {{ message }}
                         <i @click="close" class='bx bx-x text-[20px] cursor-pointer'></i>
                     </div>
-                    <div v-if="errorMessage" class="p-3 flex items-center justify-between text-red-700 bg-red-500/50 rounded-xl">
+                    <div v-if="errorMessage" class="p-3 flex items-center justify-between text-red-700 bg-red-500/20 rounded-xl">
                         {{ errorMessage }}
                         <i @click="close" class='bx bx-x text-[20px] cursor-pointer'></i>
                     </div>
@@ -131,29 +131,29 @@ onMounted(() => {
                         </div>
                         <div class="flex flex-col -mt-2 md:flex-row gap-5">
                             <div class="w-full flex flex-col gap-4 mt-0 md:mt-5">
-                                <label for="">Name <span class="text-orange-500">*</span></label>
+                                <label for="" class="text-sm">Name <span class="text-orange-500">*</span></label>
                                 <input v-model="name" required placeholder="Rafka Dyta" type="text" name="email" class="p-3 bg-gray-100 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                             </div>
                             <div class="w-full flex flex-col gap-4 mt-0 md:mt-5">
-                                <label for="">Username <span class="text-orange-500">*</span></label>
+                                <label for="" class="text-sm">Username <span class="text-orange-500">*</span></label>
                                 <input v-model="username" required placeholder="dpraf51" type="text" name="email" class="p-3 bg-gray-100 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                             </div>
                         </div>
                         <div class="flex flex-col -mt-2 md:flex-row gap-5">
                             <div class="w-full flex flex-col gap-4 mt-0 md:mt-2">
-                                <label for="">Email <span class="text-orange-500">*</span></label>
+                                <label for="" class="text-sm">Email <span class="text-orange-500">*</span></label>
                                 <input disabled v-model="email" required placeholder="example@mail.com" type="email" name="email" class="p-3 bg-gray-100 focus:bg-white transition duration-200 text-gray-400 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                             </div>
                             <div class="w-full flex flex-col gap-4 mt-0 md:mt-2">
-                                <label for="">Phone Number</label>
+                                <label for="" class="text-sm">Phone Number</label>
                                 <input disabled v-model="phone_number" required placeholder="+62 812-3456-7890" type="email" name="email" class="p-3 bg-gray-100 focus:bg-white transition text-gray-400 duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                             </div>
                         </div>
                         <div class="w-full flex flex-col gap-4 mt-0 md:mt-2">
-                            <label for="">Bio</label>
+                            <label for="" class="text-sm">Bio</label>
                             <input v-model="bio" placeholder="Your bio" type="text" name="email" class="p-3 bg-gray-100 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                         </div>
-                        <button class="w-fit bg-blue-500/50 border-2 border-blue-500 cursor-pointer transition duration-200 hover:bg-blue-500 hover:text-white px-3 py-2 rounded-xl text-blue-700 flex flex-col gap-4 mt-5 md:mt-5">
+                        <button class="w-fit bg-blue-500 cursor-pointer transition duration-200 hover:bg-blue-600 hover:text-white px-3 py-2 rounded-xl text-blue-100 flex flex-col gap-4 mt-5 md:mt-5">
                             Save Changes
                         </button>
                     </form>

@@ -51,7 +51,7 @@ const hideMessage = () => {
                 <router-link to="/login/username" class="p-3 flex-1 text-center">With Username</router-link>
             </div>
             <h1 class="font-bold text-[34px] text-center text-blue-600">Login</h1>
-            <div v-if="show" class="p-4 mt-5 bg-red-100 rounded-xl text-red-700 flex items-center justify-between">{{ message }}<i class='bx bx-x text-[20px] cursor-pointer' @click="hideMessage" ></i></div>
+            <div v-if="show" class="p-4 mt-5 bg-red-500/20 rounded-xl text-red-700 flex items-center justify-between">{{ message }}<i class='bx bx-x text-[20px] cursor-pointer' @click="hideMessage" ></i></div>
             <form @submit.prevent="login" action="" class="mt-5 flex-col flex gap-5">
                 <div class="flex-col flex gap-3">
                     <label for="email" class="text-[15px]">Email <span class="text-orange-500">*</span></label>

@@ -40,16 +40,16 @@ const previewPicture = (event) => {
                         <i class='bx bx-add-to-queue'></i> Add New Prompt
                     </router-link>
                     <input type="search" v-model="search" placeholder="Search your Prompt" class="flex-1 w-full focus:ring-blue-500 max-w-full ring-1 px-3 transition duration-200 rounded-xl ring-gray-300 bg-gray-50 focus:bg-white py-3 focus:outline-0" name="" id="">
-                    <div class="grid gap-5 grid-cols-3">
-                        <div class="shadow flex flex-col gap-3 overflow-hidden rounded-xl">
-                            <div class="justify-end flex absolute">
-                                <button class="font-extrabold bg-white/20 rounded-full w-7 cursor-pointer hover:bg-white/40 transition duration-100 h-7 relative left-69 top-2 text-white ">⫶</button>
-                                g
-                            </div>
-                            <img src="/public/img/sample.jpg" class="" alt="">
-                            <div class="px-5 pt-2 pb-5 flex flex-col gap-3">
+                    <div class="grid gap-5 grid-cols-1 md:grid-cols-3">
+                        <div class="shadow hover:shadow-xl transition duration-200 flex flex-col gap-3 overflow-hidden rounded-xl">
+                            <img src="/public/img/sample.jpg" class="hover:scale-110 transition duration-200" alt="">
+                            <div class="px-5 pt-2 flex flex-col gap-3">
                                 <h3 class="text-xl">Fantasy Castle Landscape</h3>
                                 <p>huge fantasy castle on mountain, clouds, sunrise, ultra realistic, cinematic, detailed architecture</p>
+                            </div>
+                            <div class="px-5 mt-2 pb-5 flex gap-2 justify-end">
+                                <button class="cursor-pointer rounded bg-yellow-500 text-white hover:bg-yellow-400 transition duration-100 px-4 py-2">Edit</button>
+                                <button class="cursor-pointer rounded bg-red-500 text-white hover:bg-red-400 transition duration-100 px-4 py-2">Delete</button>
                             </div>
                         </div>
                     </div>

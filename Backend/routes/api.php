@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ChangePasswordController;
+use App\Http\Controllers\Api\MypromptController;
 use App\Http\Controllers\PromptController;
 use App\Http\Controllers\Api\SaveController;
 use Illuminate\Http\Request;
@@ -20,3 +21,4 @@ Route::middleware('auth:sanctum')->post('/change-password', [ChangePasswordContr
 
 
 Route::get('/prompt', [PromptController::class, 'index']);
+Route::middleware('auth:sanctum')->get('/myprompt', [MypromptController::class, 'index']);

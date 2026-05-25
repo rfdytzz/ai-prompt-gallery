@@ -3,18 +3,33 @@ import Nav from '@/components/Nav.vue';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { onMounted } from 'vue';
+import axios from 'axios';
 onMounted(() => {
     document.title = 'Myprompt | DwayPrompts'
 })
 
 const route = useRoute()
-const imageUrl = ref(null)
-const previewPicture = (event) => {
-    const file = event.target.files[0]
-    if (file) {
-        imageUrl.value = URL.createObjectURL(file)
+
+const data = ref('')
+const getData = async () => {
+    try {
+        const token = localStorage.getItem('token')
+        const res = await axios.get('http://localhost:8000/api/myprompt',
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+        data.value = res.data.data
+        console.log(res.data.data)
+    } catch (error) {
+        console.log(error)
     }
 }
+onMounted(() => (
+    getData()
+));
 
 </script>
 
@@ -41,11 +56,11 @@ const previewPicture = (event) => {
                     </router-link>
                     <input type="search" v-model="search" placeholder="Search your Prompt" class="flex-1 w-full focus:ring-blue-500 max-w-full ring-1 px-3 transition duration-200 rounded-xl ring-gray-300 bg-gray-50 focus:bg-white py-3 focus:outline-0" name="" id="">
                     <div class="grid gap-5 grid-cols-1 md:grid-cols-3">
-                        <div class="shadow hover:shadow-xl transition duration-200 flex flex-col gap-3 overflow-hidden rounded-xl">
+                        <div v-for="(item, index) in data" class="shadow hover:shadow-xl transition duration-200 flex flex-col gap-3 overflow-hidden rounded-xl">
                             <img src="/public/img/sample.jpg" class="hover:scale-110 transition duration-200" alt="">
                             <div class="px-5 pt-2 flex flex-col gap-3">
-                                <h3 class="text-xl">Fantasy Castle Landscape</h3>
-                                <p>huge fantasy castle on mountain, clouds, sunrise, ultra realistic, cinematic, detailed architecture</p>
+                                <h3 class="text-xl font-semibold">{{ item.title }}</h3>
+                                <p>{{ item.prompt }}</p>
                             </div>
                             <div class="px-5 mt-2 pb-5 flex gap-2 justify-end">
                                 <button class="cursor-pointer rounded bg-yellow-500 text-white hover:bg-yellow-400 transition duration-100 px-4 py-2">Edit</button>

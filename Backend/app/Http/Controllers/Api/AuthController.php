@@ -63,7 +63,8 @@ class AuthController extends Controller
             'username' => 'required|unique:users,username',
             'email' => 'required|email|unique:users,email',
             'phone_number' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'confirm_passowrd' => 'required|same:password'
         ]);
 
         $data = User::create([

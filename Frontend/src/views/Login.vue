@@ -50,16 +50,16 @@ const hideMessage = () => {
                 <router-link to="/login" class="bg-gray-50 rounded-xl shadow flex-1 p-3 text-center">With Email</router-link>
                 <router-link to="/login/username" class="p-3 flex-1 text-center">With Username</router-link>
             </div>
-            <h1 class="font-bold text-[34px] text-center text-blue-600">Login</h1>
+            <h1 class="font-bold text-4xl text-center text-blue-600">Login</h1>
             <div v-if="show" class="p-4 mt-5 bg-red-500/20 rounded-xl text-red-700 flex items-center justify-between">{{ message }}<i class='bx bx-x text-[20px] cursor-pointer' @click="hideMessage" ></i></div>
             <form @submit.prevent="login" action="" class="mt-5 flex-col flex gap-5">
                 <div class="flex-col flex gap-3">
-                    <label for="email" class="text-[15px]">Email <span class="text-orange-500">*</span></label>
+                    <label for="email" class="text-sm">Email <span class="text-orange-500">*</span></label>
                     <input v-model="email" required placeholder="example@email.com" type="email" name="email" class="p-3 bg-gray-50 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                     <p class="text-[13px] text-gray-500">Use your registered email</p>
                 </div>
                 <div class="flex-col flex gap-3">
-                    <label for="email" class="text-[15px]">Password <span class="text-orange-500">*</span></label>
+                    <label for="email" class="text-sm">Password <span class="text-orange-500">*</span></label>
                     <div class="flex pr-3 items-center justify-between bg-gray-50 focus-within:bg-white transition duration-200 ring-1 rounded-xl ring-gray-200 focus-within:ring-blue-500 gap-1">
                         <input v-model="password" required placeholder="󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏" minlength="8" :type="isShow ? 'text' : 'password'" name="password" class="p-3 focus:outline-0 rounded-l-xl flex-1" id="">
                         <i @click="showHidePassword" :class="isShow ? 'bx-hide' : 'bx-show'" class='bx text-[22px] pl-2 cursor-pointer'></i>

@@ -10,19 +10,18 @@ use Illuminate\Support\Facades\Hash;
 class ChangePasswordController extends Controller
 {
     public function index(Request $request) {
-        $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required',
-            'confirm_password' => 'required|same:new_password'
-        ]);
-
         $password = Auth::user()->password;
-
         if (!Hash::check($request->old_password, $password)) {
             return response()->json([
                 'message' => 'Incorrect Old Password'
             ],);
         }
+
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required',
+            'confirm_password' => 'required|same:new_password'
+        ]);
 
         $user = Auth::user();
         $user->update([
@@ -30,7 +29,7 @@ class ChangePasswordController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'password change was successful'
+            'successMessage' => 'Password Change was successfull'
         ]);
     }
 }

@@ -80,6 +80,7 @@ onMounted( () => {
                 <router-link to="/" class="hover:bg-gray-100 px-2 rounded py-1 transition duration-200" :class="route.path === '/' ? 'bg-gray-100' : ''">Home</router-link>
                 <router-link to="/prompt" class="hover:bg-gray-100 px-2 rounded py-1 transition duration-200" :class="route.path === '/prompt' ? 'bg-gray-100' : ''">Prompt</router-link>
                 <router-link to="/about" class="hover:bg-gray-100 px-2 rounded py-1 transition duration-200" :class="route.path === '/about' ? 'bg-gray-100' : ''">About</router-link>
+                <router-link to="/profile/myprompt" class="hover:bg-gray-100 px-2 rounded py-1 transition duration-200" :class="route.path === '/profile/myprompt' ? 'bg-gray-100' : ''">My Prompt</router-link>
             </ul>
         </div>
         <div class="flex gap-2 items-center">
@@ -118,6 +119,7 @@ onMounted( () => {
             <router-link class="text-[20px] p-3 rounded-xl hover:bg-gray-100" :class="route.path === '/' ? 'bg-gray-100' : ''" to="/">Home</router-link>
             <router-link class="text-[20px] p-3 rounded-xl hover:bg-gray-100" :class="route.path === '/prompt' ? 'bg-gray-100' : ''" to="/prompt">Prompt</router-link>
             <router-link class="text-[20px] p-3 rounded-xl hover:bg-gray-100" :class="route.path === '/about' ? 'bg-gray-100' : ''" to="">About</router-link>
+            <router-link class="text-[20px] p-3 rounded-xl hover:bg-gray-100" :class="route.path === '//profile/myprompt' ? 'bg-gray-100' : ''" to="/profile/myprompt">My Prompt</router-link>
             <router-link class="text-[20px] p-3 rounded-xl hover:bg-gray-100" :class="route.path === '/profile' ? 'bg-gray-100' : ''" to="/profile">Profile</router-link>
         </ul>
     </div>

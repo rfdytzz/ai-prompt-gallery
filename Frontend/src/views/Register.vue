@@ -22,6 +22,7 @@ const email = ref('')
 const password = ref('')
 const countryCode = ref('+62')
 const number = ref('')
+const confirm_password = ref('')
 const phone_number = computed( () => countryCode.value + number.value)
 const message = ref('')
 
@@ -33,7 +34,8 @@ const register = async () => {
                 email: email.value,
                 username: username.value,
                 password: password.value,
-                phone_number: phone_number.value
+                phone_number: phone_number.value,
+                confirm_password: confirm_password.value
             }
         )
         router.push('/login')
@@ -52,21 +54,21 @@ const register = async () => {
             <div :class="isMessage ? 'block' : 'hidden'" v-if="message" class="p-4 mt-5 bg-red-100 rounded-xl text-red-700 flex items-center justify-between">{{ message }}<i class='bx bx-x text-[20px] cursor-pointer' @click="hideMessage" ></i></div>
             <form @submit.prevent="register" action="" class="mt-5 flex-col flex gap-5">
                 <div class="flex-col flex gap-3">
-                    <label for="name" class="text-[15px]">Name <span class="text-orange-500">*</span></label>
+                    <label for="name" class="text-sm">Name <span class="text-orange-500">*</span></label>
                     <input v-model="name" required placeholder="Your Name" type="text" name="name" class="p-3 bg-gray-50 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                     <p class="text-[13px] text-gray-500">Use your Real Name</p>
                 </div>
                 <div class="flex-col flex gap-3">
-                    <label for="name" class="text-[15px]">Username <span class="text-orange-500">*</span></label>
+                    <label for="name" class="text-sm">Username <span class="text-orange-500">*</span></label>
                     <input v-model="username" required placeholder="Username" type="text" name="username" class="p-3 bg-gray-50 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                 </div>
                 <div class="flex-col flex gap-3">
-                    <label for="email" class="text-[15px]">Email <span class="text-orange-500">*</span></label>
+                    <label for="email" class="text-sm">Email <span class="text-orange-500">*</span></label>
                     <input v-model="email" required placeholder="example@email.com" type="email" name="email" class="p-3 bg-gray-50 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                     <p class="text-[13px] text-gray-500">Use your unregistered email</p>
                 </div>
                 <div class="flex-col flex gap-3">
-                    <label for="name" class="text-[15px]">Phone Number <span class="text-orange-500">*</span></label>
+                    <label for="name" class="text-sm">Phone Number <span class="text-orange-500">*</span></label>
                     <div class="flex p-3 gap-2 bg-gray-50 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500">
                         <select v-model="countryCode" class="focus:outline-0" name="" id="">
                             <option selected value="+62">+62 </option>
@@ -75,18 +77,31 @@ const register = async () => {
                         <input v-model="number" required placeholder="Phone Number" type="number" name="phone_number" class="flex-1 focus:outline-0" id="">
                     </div>
                 </div>
+                <hr class="text-gray-200">
                 <div class="flex-col flex gap-3">
-                    <label for="email" class="text-[15px]">Password <span class="text-orange-500">*</span></label>
-                    <div class="flex pr-3 items-center justify-between bg-gray-50 focus-within:bg-white transition duration-200 ring-1 rounded-xl ring-gray-200 focus-within:ring-blue-500 gap-1">
-                        <input v-model="password" required placeholder="󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏" minlength="8" :type="isShow ? 'text' : 'password'" name="password" class="p-3 focus:outline-0 flex-1" id="">
-                        <i @click="showHidePassword" :class="isShow ? 'bx-show' : 'bx-hide'" class='bx text-[22px] cursor-pointer'></i>
+                    <label for="email" class="text-sm">Password <span class="text-orange-500">*</span></label>
+                    <div class="flex items-center justify-between bg-gray-50 focus-within:bg-white transition duration-200 ring-1 rounded-xl ring-gray-200 focus-within:ring-blue-500">
+                        <input v-model="password" required placeholder="󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏" minlength="8" :type="isShow ? 'text' : 'password'" name="password" class="p-3 rounded-xl focus:outline-0 flex-1" id="">
                     </div>
                     <p class="text-[13px] text-gray-500">Password must be at least 8 characters</p>
+                </div>
+                <div class="flex-col flex gap-3">
+                    <label for="email" class="text-sm">Confirm Password <span class="text-orange-500">*</span></label>
+                    <div class="flex items-center justify-between bg-gray-50 focus-within:bg-white transition duration-200 ring-1 rounded-xl ring-gray-200 focus-within:ring-blue-500 gap-1">
+                        <input v-model="confirm_password" required placeholder="󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏󠁯•󠁏" minlength="8" :type="isShow ? 'text' : 'password'" name="confirmPassword" class="p-3 rounded-xl focus:outline-0 flex-1" id="">
+                    </div>
+                    <p class="text-[13px] text-gray-500">Repeat your Password</p>
+                </div>
+                <div class="flex -mt-2 gap-2">
+                    <label @click="showHidePassword" for="terms" class="flex gap-2 items-center">
+                        <input id="terms" type="checkbox" class="w-3 h-3">
+                        <p class="text-sm">Show Password</p>
+                    </label>
                 </div>
                 <div class="flex -mt-2 gap-2">
                     <label for="terms" class="flex gap-2 items-center">
                         <input required id="terms" type="checkbox" class="w-3 h-3">
-                        <p class="text-[14px]">I agree with the <router-link to="/ToS" class="text-blue-500 hover:underline" href="">terms and conditions</router-link></p>
+                        <p class="text-sm">I agree with the <router-link to="/ToS" class="text-blue-500 hover:underline" href="">terms and conditions</router-link></p>
                     </label>
                 </div>
 

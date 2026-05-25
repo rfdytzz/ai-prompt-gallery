@@ -3,6 +3,7 @@ import ChangePassword from '@/views/ChangePassword.vue'
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
 import Login_username from '@/views/Login_username.vue'
+import Myprompt from '@/views/Myprompt.vue'
 import Profile from '@/views/Profile.vue'
 import Prompt from '@/views/Prompt.vue'
 import Register from '@/views/Register.vue'
@@ -19,6 +20,7 @@ const router = createRouter({
     { path: '/', component: Home, meta: {auth: true}},
     { path: '/about', component: About },
     { path: '/profile', component: Profile, meta: {auth: true}},
+    { path: '/profile/myprompt', component: Myprompt, meta: {auth: true}},
     { path: '/settings', component: Settings, meta: {auth: true}},
     { path: '/change-password', component: ChangePassword, meta: {auth: true}},
     { path: '/ToS', component: TermsOfService },

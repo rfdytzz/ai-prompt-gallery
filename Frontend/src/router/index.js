@@ -1,4 +1,5 @@
 import About from '@/views/About.vue'
+import Allusers from '@/views/Allusers.vue'
 import ChangePassword from '@/views/ChangePassword.vue'
 import CreatePrompt from '@/views/CreatePrompt.vue'
 import Dashboard from '@/views/Dashboard.vue'
@@ -8,6 +9,7 @@ import Login_username from '@/views/Login_username.vue'
 import Myprompt from '@/views/Myprompt.vue'
 import Profile from '@/views/Profile.vue'
 import Prompt from '@/views/Prompt.vue'
+import Promptmanage from '@/views/Promptmanage.vue'
 import Register from '@/views/Register.vue'
 import Settings from '@/views/Settings.vue'
 import TermsOfService from '@/views/TermsOfService.vue'
@@ -28,7 +30,9 @@ const router = createRouter({
     { path: '/change-password', component: ChangePassword, meta: {auth: true}},
     { path: '/ToS', component: TermsOfService },
     { path: '/prompt', component: Prompt },
-    { path: '/dashboard', component: Dashboard, meta: {auth:true, role: 'admin'}}
+    { path: '/dashboard', component: Dashboard, meta: {auth:true, role: 'admin'}},
+    { path: '/dashboard/allusers', component: Allusers, meta: {auth:true, role: 'admin'}},
+    { path: '/dashboard/prompt', component: Promptmanage, meta: {auth:true, role: 'admin'}}
   ],
 })
 
@@ -42,14 +46,13 @@ router.beforeEach((to, from, next) => {
 
   if (to.meta.guest && token) {
     return next(role === 'admin' ? '/dashboard' : '/')
-  }  
+  }
 
   if(to.meta.role && to.meta.role !== role) {
     return next('/')
   }
 
   next()
-
 })
 
 export default router

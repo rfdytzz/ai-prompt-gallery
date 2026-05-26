@@ -1,5 +1,7 @@
 import About from '@/views/About.vue'
 import ChangePassword from '@/views/ChangePassword.vue'
+import CreatePrompt from '@/views/CreatePrompt.vue'
+import Dashboard from '@/views/Dashboard.vue'
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
 import Login_username from '@/views/Login_username.vue'
@@ -21,25 +23,33 @@ const router = createRouter({
     { path: '/about', component: About },
     { path: '/profile', component: Profile, meta: {auth: true}},
     { path: '/profile/myprompt', component: Myprompt, meta: {auth: true}},
+    { path: '/profile/myprompt/create', component: CreatePrompt, meta: {auth: true}},
     { path: '/settings', component: Settings, meta: {auth: true}},
     { path: '/change-password', component: ChangePassword, meta: {auth: true}},
     { path: '/ToS', component: TermsOfService },
     { path: '/prompt', component: Prompt },
+    { path: '/dashboard', component: Dashboard, meta: {auth:true, role: 'admin'}}
   ],
 })
 
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token')
+  const role = localStorage.getItem('role')
 
   if (to.meta.auth && !token) {
     return next('/login')
-  }
+  } 
 
   if (to.meta.guest && token) {
+    return next(role === 'admin' ? '/dashboard' : '/')
+  }  
+
+  if(to.meta.role && to.meta.role !== role) {
     return next('/')
   }
-  
+
   next()
+
 })
 
 export default router

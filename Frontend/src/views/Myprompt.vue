@@ -9,8 +9,8 @@ onMounted(() => {
 })
 
 const route = useRoute()
-
-const data = ref('')
+const search = ref('')
+const data = ref([])
 const getData = async () => {
     try {
         const token = localStorage.getItem('token')
@@ -56,7 +56,7 @@ onMounted(() => (
                     </router-link>
                     <input type="search" v-model="search" placeholder="Search your Prompt" class="flex-1 w-full focus:ring-blue-500 max-w-full ring-1 px-3 transition duration-200 rounded-xl ring-gray-300 bg-gray-50 focus:bg-white py-3 focus:outline-0" name="" id="">
                     <div class="grid gap-5 grid-cols-1 md:grid-cols-3">
-                        <div v-for="(item, index) in data" class="shadow hover:shadow-xl transition duration-200 flex flex-col gap-3 overflow-hidden rounded-xl">
+                        <div v-for="(item, index) in data.filter(i => i.title.toLowerCase().includes(search.toLowerCase()))" :key="index" class="shadow hover:shadow-xl transition duration-200 flex flex-col gap-3 overflow-hidden rounded-xl">
                             <img src="/public/img/sample.jpg" class="hover:scale-110 transition duration-200" alt="">
                             <div class="px-5 pt-2 flex flex-col gap-3">
                                 <h3 class="text-xl font-semibold">{{ item.title }}</h3>

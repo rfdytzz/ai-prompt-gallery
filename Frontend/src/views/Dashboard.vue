@@ -1,7 +1,8 @@
 <script setup>
 import Admin from '@/components/Admin.vue';
 import axios from 'axios';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, nextTick } from 'vue';
+import Chart from 'chart.js/auto'
 
 const isOpenMenu = ref(false)
 const openMenu = () => {
@@ -36,9 +37,37 @@ const getData = async () => {
     }
 }
 
-onMounted(() => {
-    getUser(),
-    getData()
+onMounted(async () => {
+    await getUser()
+    await getData()
+    await nextTick()
+    const ctx = document.getElementById('myChart')
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['User', 'Prompt', 'Category', 'Tag '],
+            datasets: [{
+            label: 'Total',
+            data: [
+                data.value.totalUser,
+                data.value.totalPrompt,
+                data.value.totalCategory,
+                data.value.totalTag,
+            ],
+            borderWidth: 1
+        }]
+        },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true,
+            max: 50
+            }
+        }
+        }
+    });
+
 })
 
 </script>
@@ -46,13 +75,13 @@ onMounted(() => {
 <template>
     <Admin />
     <div class="fixed right-0 left-64 items-center p-5 flex justify-between">
-        <h1 class="font-semibold text-lg">Admin Panel</h1>
+        <h1 class="font-semibold text-lg bg-white/80 rounded-2xl">Admin Panel</h1>
         <div @click="openMenu" class="flex gap-2 items-center bg-gray-200 cursor-pointer px-3 py-2 rounded-full">
             <img src="/img/sampleman.jpg" class="rounded-full border border-gray-100 h-8 w-8 object-cover" alt="">
             <p>Admin</p>
         </div>
     </div>
-    <div :class="isOpenMenu ? 'visible opacity-100' : 'invisible opacity-0'" class="fixed transition duration-00 shadow right-6 top-20 rounded-xl">
+    <div :class="isOpenMenu ? 'visible opacity-100' : 'invisible opacity-0'" class="fixed transition bg-white duration-00 shadow border border-gray-200 right-6 top-20 rounded-xl">
         <ul class="flex flex-col">
             <button class="text-md py-3 px-5 cursor-pointer hover:bg-gray-100 rounded-t-xl transition duration-100 items-center flex gap-2"><i class='bx bx-user-circle' ></i> Profile</button>
             <button class="text-md py-3 px-5 cursor-pointer hover:bg-gray-100 rounded transition duration-100 items-center flex gap-2"><i class='bx bx-cog' ></i> Settings</button>
@@ -61,7 +90,7 @@ onMounted(() => {
         </ul>
     </div>
 
-    <div class="items-center grid grid-cols-4 w-full gap-5 pl-69 pt-30 pr-5 justify-between">
+    <div class="items-center pb-10 grid grid-cols-4 w-full gap-5 pl-69 pt-30 pr-5 justify-between">
         <div class="shadow p-5 col-span-4 rounded hover:shadow-xl transition duration-100 border border-gray-200">
             <h1 class="font-normal text-md">Hi! Welcome back <span class="font-semibold">{{ name }}</span></h1>
         </div>
@@ -80,6 +109,10 @@ onMounted(() => {
         <div class="shadow p-5 flex flex-col gap-2 col-span-1 rounded hover:shadow-xl transition duration-100 border border-gray-200">
             <div class="font-normal text-md flex items-center gap-2"><i class='bx bx-user' ></i> Total User</div>
             <h2 class="text-4xl">{{ data.totalTag }}</h2>
+        </div>
+        <div class="shadow p-5 flex flex-col gap-2 col-span-3 row-span-1  rounded hover:shadow-xl transition duration-100 border border-gray-200">
+            <div class="font-normal text-md flex items-center gap-2"><i class='bx bx-user' ></i> Chart</div>
+            <canvas id="myChart"></canvas>
         </div>
     </div>
 </template>

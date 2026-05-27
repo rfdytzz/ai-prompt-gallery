@@ -101,7 +101,17 @@ class AuthController extends Controller
         $user->update([
             'status' => 'banned'
         ]);
-
-        g
+        return response()->json([
+            'success' => 'ban'
+        ]);
+    }
+    public function unban($id) {
+        $user = User::findOrFail($id);
+        $user->update([
+            'status' => 'active'
+        ]);
+        return response()->json([
+            'success' => 'unban'
+        ]);
     }
 }

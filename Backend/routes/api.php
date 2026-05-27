@@ -29,3 +29,4 @@ Route::get('/dashboard', [DataController::class, 'totalData']);
 Route::get('/dashboard/allusers', [DataController::class, 'user']);
 Route::get('/dashboard/allusers/{id}', [AdminController::class, 'user']);
 Route::get('/dashboard/allusers/{id}/ban', [AuthController::class, 'ban']);
+Route::get('/dashboard/allusers/{id}/unban', [AuthController::class, 'unban']);

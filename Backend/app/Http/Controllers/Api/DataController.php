@@ -26,7 +26,7 @@ class DataController extends Controller
     }
 
     public function user() {
-        $data = User::latest()->get();
+        $data = User::all();
 
         return response()->json([
             'data' => $data

@@ -8,13 +8,7 @@ const isShow = ref(false)
 const showHidePassword = () => {
     isShow.value = !isShow.value
 }
-
 const router = useRouter()
-
-const isMessage = ref(true)
-const hideMessage = () => {
-    isMessage.value = !isMessage.value
-}
 
 const name = ref('')
 const username = ref('')
@@ -45,13 +39,17 @@ const register = async () => {
     }
 }
 
+const hideMessage = () => {
+    message.value = ''
+}
+
 </script>
 
 <template>
     <div class="w-full h-fit py-10 items-center justify-center flex flex-col">
         <div class="bg-white gap-5 px-20 md:px-5 lg:px-5 py-2 md:py-10 w-130 text-black shadow-none md:shadow lg:shadow focus-within:shadow-none md:focus-within:shadow-xl lg:focus-within:shadow-xl transition duration-200">
             <h1 class="font-bold text-[34px] text-center text-blue-600">Register</h1>
-            <div :class="isMessage ? 'block' : 'hidden'" v-if="message" class="p-4 mt-5 bg-red-100 rounded-xl text-red-700 flex items-center justify-between">{{ message }}<i class='bx bx-x text-[20px] cursor-pointer' @click="hideMessage" ></i></div>
+            <div v-if="message" class="p-4 mt-5 bg-red-100 rounded-xl text-red-700 flex items-center justify-between">{{ message }}<i class='bx bx-x text-[20px] cursor-pointer' @click="hideMessage" ></i></div>
             <form @submit.prevent="register" action="" class="mt-5 flex-col flex gap-5">
                 <div class="flex-col flex gap-3">
                     <label for="name" class="text-sm">Name <span class="text-orange-500">*</span></label>
@@ -93,13 +91,13 @@ const register = async () => {
                     <p class="text-[13px] text-gray-500">Repeat your Password</p>
                 </div>
                 <div class="flex -mt-2 gap-2">
-                    <label @click="showHidePassword" for="terms" class="flex gap-2 items-center">
-                        <input id="terms" type="checkbox" class="w-3 h-3">
+                    <label class="flex gap-2 items-center">
+                        <input @click="showHidePassword" id="terms" type="checkbox" class="w-3 h-3">
                         <p class="text-sm">Show Password</p>
                     </label>
                 </div>
                 <div class="flex -mt-2 gap-2">
-                    <label for="terms" class="flex gap-2 items-center">
+                    <label for="" class="flex gap-2 items-center">
                         <input required id="terms" type="checkbox" class="w-3 h-3">
                         <p class="text-sm">I agree with the <router-link to="/ToS" class="text-blue-500 hover:underline" href="">terms and conditions</router-link></p>
                     </label>

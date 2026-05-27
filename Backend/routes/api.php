@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ChangePasswordController;
 use App\Http\Controllers\Api\DataController;
@@ -26,3 +27,5 @@ Route::middleware('auth:sanctum')->get('/myprompt', [MypromptController::class, 
 
 Route::get('/dashboard', [DataController::class, 'totalData']);
 Route::get('/dashboard/allusers', [DataController::class, 'user']);
+Route::get('/dashboard/allusers/{id}', [AdminController::class, 'user']);
+Route::get('/dashboard/allusers/{id}/ban', [AuthController::class, 'ban']);

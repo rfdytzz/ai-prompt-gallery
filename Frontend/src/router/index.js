@@ -3,9 +3,10 @@ import Allusers from '@/views/Allusers.vue'
 import ChangePassword from '@/views/ChangePassword.vue'
 import CreatePrompt from '@/views/CreatePrompt.vue'
 import Dashboard from '@/views/Dashboard.vue'
+import DetailUser from '@/views/DetailUser.vue'
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
-import LoginUsername from '@/views/LoginUsername.vue'
+import LoginUsername from '@/views/Login_username.vue'
 import Myprompt from '@/views/Myprompt.vue'
 import Profile from '@/views/Profile.vue'
 import Prompt from '@/views/Prompt.vue'
@@ -32,6 +33,7 @@ const router = createRouter({
     { path: '/prompt', component: Prompt },
     { path: '/dashboard', component: Dashboard, meta: {auth:true, role: 'admin'}},
     { path: '/dashboard/allusers', component: Allusers, meta: {auth:true, role: 'admin'}},
+    { path: '/dashboard/allusers/:id', component: DetailUser, meta: {auth:true, role: 'admin'}},
     { path: '/dashboard/prompt', component: Promptmanage, meta: {auth:true, role: 'admin'}}
   ],
 })

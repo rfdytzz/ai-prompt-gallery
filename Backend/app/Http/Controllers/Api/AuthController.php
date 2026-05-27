@@ -64,7 +64,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users,email',
             'phone_number' => 'required',
             'password' => 'required',
-            'confirm_passowrd' => 'required|same:password'
+            'confirm_password' => 'required|same:password'
         ]);
 
         $data = User::create([
@@ -80,5 +80,28 @@ class AuthController extends Controller
             'message' => 'Account Successfully added',
             'data' => $data
         ]);
+    }
+
+    public function banUser(Request $request, $id) {
+        $request->validate([
+            'status' => 'required'
+        ]);
+        $user = User::findOrFail($id);
+        $user->update([
+            'status' => $request->status
+        ]);
+        
+        return response()->json([
+            'success' => 'true'
+        ]);
+    }
+    
+    public function ban($id) {
+        $user = User::findOrFail($id);
+        $user->update([
+            'status' => 'banned'
+        ]);
+
+        g
     }
 }

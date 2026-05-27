@@ -26,6 +26,8 @@ const login = async () => {
         )
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('role', res.data.user.role)
+        message.value = res.data.message
+        console.log(res.data.message)
         if (localStorage.getItem('role') === 'admin') {
             router.push('/dashboard')
         } else {

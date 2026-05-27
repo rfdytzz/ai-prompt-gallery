@@ -26,6 +26,7 @@ const login = async () => {
         )
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('role', res.data.user.role)
+        message.value = res.data.message
         await router.push(role === 'admin' ? '/dashboard' : '/')
         console.log(res.data) 
     } catch (error) {

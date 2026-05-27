@@ -21,7 +21,18 @@ class AuthController extends Controller
             ], 401);
         }
 
+        $status = Auth::user()->status;
         $user = Auth::user();
+
+        if ($status == 'banned') {
+            return response()->json([
+                'message' => 'Sorry, your account has been banned'
+            ], 403);
+        }
+
+
+        $user = Auth::user();
+        
         $token = $user->createToken('auth-sanctum')->plainTextToken;
 
         return response()->json([
@@ -41,7 +52,15 @@ class AuthController extends Controller
             ], 401);
         }
 
+        $status = Auth::user()->status;
         $user = Auth::user();
+
+        if ($status == 'banned') {
+            return response()->json([
+                'message' => 'Sorry, your account has been banned'
+            ], 403);
+        }
+
         $token = $user->createToken('auth-sanctum')->plainTextToken;
 
         return response()->json([

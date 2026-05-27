@@ -67,7 +67,7 @@ onMounted(() => {
                         <td class="p-3 text-start">@{{ item.username }}</td>
                         <td class="p-3 text-start">{{ item.email }}</td>
                         <td class="p-3 text-start">{{ item.created_at.split('T')[0] }}, {{ item.created_at.split('T')[1].substring(0, 5) }} WIB</td>
-                        <td class="p-3 text-start capitalize text-green-700">{{ item.status }}</td>
+                        <td :class="item.status === 'active' ? 'text-green-700' : 'text-red-700'" class="p-3 text-start capitalize">{{ item.status }}</td>
                         <td class="p-3 text-start flex gap-2">
                             <!-- <button class="p-2 bg-yellow-500 items-center flex rounded text-white hover:bg-yellow-600 transition duration-100 cursor-pointer"><i class='bx bxs-edit' ></i></button> -->
                             <router-link :to="`/dashboard/allusers/${item.id}`" @click="detail" class="p-2 bg-green-500 items-center flex rounded text-white hover:bg-green-600 transition duration-100 cursor-pointer"><i class='bx bx-show' ></i></router-link>

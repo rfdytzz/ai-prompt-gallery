@@ -25,3 +25,4 @@ Route::get('/prompt', [PromptController::class, 'index']);
 Route::middleware('auth:sanctum')->get('/myprompt', [MypromptController::class, 'index']);
 
 Route::get('/dashboard', [DataController::class, 'totalData']);
+Route::get('/dashboard/allusers', [DataController::class, 'user']);

@@ -5,7 +5,7 @@ import CreatePrompt from '@/views/CreatePrompt.vue'
 import Dashboard from '@/views/Dashboard.vue'
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
-import Login_username from '@/views/Login_username.vue'
+import LoginUsername from '@/views/LoginUsername.vue'
 import Myprompt from '@/views/Myprompt.vue'
 import Profile from '@/views/Profile.vue'
 import Prompt from '@/views/Prompt.vue'
@@ -19,7 +19,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/login', component: Login, meta:{guest:true}},
-    { path: '/login/username', component: Login_username, meta: {guest:true}},
+    { path: '/login/username', component: LoginUsername, meta: {guest:true}},
     { path: '/register', component: Register, meta: {guest:true}},
     { path: '/', component: Home, meta: {auth: true}},
     { path: '/about', component: About },

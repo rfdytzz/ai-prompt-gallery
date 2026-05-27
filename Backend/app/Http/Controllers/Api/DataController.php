@@ -24,4 +24,12 @@ class DataController extends Controller
             'totalTag' => $totalTag
         ]);
     }
+
+    public function user() {
+        $data = User::latest()->get();
+
+        return response()->json([
+            'data' => $data
+        ]);
+    }
 }

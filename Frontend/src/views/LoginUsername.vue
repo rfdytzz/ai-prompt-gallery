@@ -59,7 +59,7 @@ onMounted( () => {
                 <router-link to="/login" class="flex-1 p-3 text-center">With Email</router-link>
                 <router-link to="/login/username" class="p-3 bg-gray-50 rounded-xl shadow flex-1 text-center">With Username</router-link>
             </div>
-            <h1 class="font-bold text-[34px] text-center text-blue-600">Login</h1>
+            <h1 class="font-bold text-4xl text-center text-blue-600">Login</h1>
             <div v-if="show" class="p-4 mt-5 bg-red-50 rounded-xl text-red-700 flex items-center justify-between">{{ message }}<i class='bx bx-x text-[20px] cursor-pointer' @click="hideMessage" ></i></div>
             <form @submit.prevent="login" action="" class="mt-5 flex-col flex gap-5">
                 <div class="flex-col flex gap-3">

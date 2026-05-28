@@ -43,6 +43,8 @@ const logout = async () => {
             }
         )
         localStorage.removeItem('token')
+        localStorage.removeItem('name')
+        localStorage.removeItem('roleg')
         router.push('/login/username')
     } catch (error) {
         console.log(error)

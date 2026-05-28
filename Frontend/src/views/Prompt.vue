@@ -9,7 +9,7 @@ onMounted(() => {
 const data = ref([])
 const search = ref('')
 const loading = ref(false)
-const sort = ref('')
+const sort = ref('latest')
 
 const getData = async () => {
     try {
@@ -61,7 +61,7 @@ onMounted ( () => {
             <div class="flex gap-3 w-full md:w-200 items-center">
                 <form @submit.prevent="getData" action="" class="flex  items-center gap-3">
                     <select name="" v-model="sort" class="px-3 focus:outline-0 focus:ring focus:ring-blue-500 py-2 shadow rounded-xl" id="">
-                        <option selected value="latest">Latest</option>
+                        <option value="latest" selected>Latest</option>
                         <option value="oldest">Oldest</option>
                     </select>
                     <button type="submit" class="px-4 py-2 text-white cursor-pointer bg-blue-500 rounded-xl flex items-center gap-2"><i class='bx bx-sort'></i> Sort</button>

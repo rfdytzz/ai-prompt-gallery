@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
 Route::middleware('auth:sanctum')->post('/change-password', [ChangePasswordController::class, 'index']);
 
 
-Route::get('/prompt', [PromptController::class, 'index']);
+Route::post('/prompt', [PromptController::class, 'index']);
 Route::middleware('auth:sanctum')->get('/myprompt', [MypromptController::class, 'index']);
 
 Route::get('/dashboard', [DataController::class, 'totalData']);

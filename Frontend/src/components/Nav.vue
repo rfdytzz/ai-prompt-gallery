@@ -4,6 +4,7 @@ import { computed, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 const name = ref('')
+const avatar = ref('')
 const displayName = computed(() => {
     return name.value.split(' ')[0];
 })
@@ -34,6 +35,7 @@ const getData = async () => {
         // console.log(res.data)
         name.value = res.data.name;
         initial.value = res.data.name
+        avatar.value = res.data.avatar
     } catch (error) {
         console.log(error)
     }
@@ -87,8 +89,8 @@ onMounted( () => {
             <div class="hidden md:block lg:block">
                 <div @click="openMenu" class="flex cursor-pointer gap-2 rounded-full bg-gray-100 px-3 py-2 items-center">
                     <div class="cursor-pointer flex gap-5 items-center">
-                        <!-- <img src="/public/img/sampleman.jpg" class="size-10 rounded-full" alt=""> -->
-                        <p class="h-5 flex items-center shadow p-4 bg-white rounded-full justify-center text-[15px] w-5">
+                        <img v-if="avatar" :src="`http://localhost:8000/storage/${avatar}`" class="size-10 rounded-full" alt="">
+                        <p v-else class="h-5 flex items-center shadow p-4 bg-white rounded-full justify-center text-[15px] w-5">
                             {{ defaultAvatar }}
                         </p>
                     </div>

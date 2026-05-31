@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             TagSeeder::class,
-            PromptSeeder::class,
         ]);
     }
 }

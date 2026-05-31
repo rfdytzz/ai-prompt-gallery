@@ -10,11 +10,13 @@ onMounted(() => {
 const route = useRoute()
 const router = useRouter()
 const imageUrl = ref(null)
-const previewPicture = (event) => {
+const image = ref(null)
+const handleFile = (event) => {
     const file = event.target.files[0]
-    if (file) {
-        imageUrl.value = URL.createObjectURL(file)
-    }
+    
+    if (!file) return
+    image.value = file
+    imageUrl.value = URL.createObjectURL(file)
 }
 
 const firstInitial = ref('')
@@ -25,6 +27,7 @@ const name = ref('')
 const username = ref('')
 const bio = ref('')
 const email = ref('')
+const avatar = ref('')
 const phone_number = ref('')
 const getData = async () => {
     try {
@@ -41,6 +44,7 @@ const getData = async () => {
         email.value = res.data.email
         phone_number.value = res.data.phone_number
         firstInitial.value = res.data.name
+        avatar.value = res.data.avatar
         bio.value = res.data.bio
         console.log(res.data)
     } catch (error) {
@@ -54,19 +58,24 @@ const errorMessage = ref('')
 const save = async () => {
     try {
         message.value = ''
+        const formData = new FormData()
+        if (image.value) {
+            formData.append('avatar', image.value)
+        }
+        formData.append('name', name.value)
+        formData.append('username', username.value)
+        formData.append('bio', bio.value)
+
         const token = localStorage.getItem('token')
         const res = await axios.post('http://localhost:8000/api/save-changes',
-            {
-                name: name.value,
-                username: username.value,
-                bio: bio.value
-            },
+            formData,
             {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }
         )
+        getData()
         message.value = res.data.message
         router.push('/profile')
     } catch (error) {
@@ -113,19 +122,20 @@ onMounted(() => {
                     <form @submit.prevent="save" action="" class="flex-1 flex flex-col gap-5 p-5 rounded-xl shadow">
                         <h3 class="text-[18px]">Edit Your Profile</h3>
                         <div class="flex flex-col md:flex-row gap-10 md:gap-5 items-center">
-                            <img v-if="imageUrl" :src="imageUrl"  class="size-40 rounded-full shadow hover:shadow-xl transition duration-200" alt="">
-                            <div v-if="defaultAvatar" class="bg-gray-100 shadow hover:shadow-xl transition duration-200 flex items-center justify-center p-5 rounded-full">
+                            <img v-if="avatar" :src="`http://localhost:8000/storage/${avatar}`" class="size-40 rounded-full shadow hover:shadow-xl transition duration-200" alt="">
+                            <div v-else class="bg-gray-100 shadow hover:shadow-xl transition duration-200 flex items-center justify-center p-5 rounded-full">
                                 <p class="h-full flex items-center justify-center text-[50px] w-20">
                                     {{ defaultAvatar }}
                                 </p>
                             </div>
+                            <img v-if="imageUrl" :src="imageUrl"  class="size-40 rounded-full shadow hover:shadow-xl transition duration-200" alt="">   
                             <div class="flex gap-3 w-60 flex-col">
                                 <h4 class="text-[15px]">Change your Profile picture</h4>
                                 <label for="img" class="px-3 py-2 hover:bg-gray-100 shadow rounded-xl">
                                     <p>
                                         Choose Picture
                                     </p>
-                                    <input id="img" type="file" @change="previewPicture" class="hidden">
+                                    <input id="img" accept="image/*" type="file" @change="handleFile" class="hidden">
                                 </label>
                                 <p class="font-bold italic text-[10px] text-end">MAX: 5MB, JPG, JPEG, PNG</p>
                             </div>

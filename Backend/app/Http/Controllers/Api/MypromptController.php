@@ -29,25 +29,22 @@ class MypromptController extends Controller
             'category_id' => 'required',
             'tag_id' => 'required',
             'prompt' => 'required',
-            'author_id' => 'required'
         ]);
 
         $user = auth()->user();
+        $path = null;
 
         if ($request->hasFile('thumbnail')) {
             $path = $request->file('thumbnail')->store('thumbnail', 'public');
-
-            Prompt::create([
-                'thumbnail' => $path
-            ]);
         }
 
         Prompt::create([
             'title' => $request->title,
+            'thumbnail' => $path,
             'description' => $request->description,
             'category_id' => $request->category_id,
             'tag_id' => $request->tag_id,
-            'author_id' => $user,
+            'author_id' => $user->id,
             'prompt' => $request->prompt
         ]);
 

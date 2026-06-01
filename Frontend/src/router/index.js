@@ -4,6 +4,7 @@ import ChangePassword from '@/views/ChangePassword.vue'
 import CreatePrompt from '@/views/CreatePrompt.vue'
 import Dashboard from '@/views/Dashboard.vue'
 import DetailUser from '@/views/DetailUser.vue'
+import EditPrompt from '@/views/EditPrompt.vue'
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
 import LoginUsername from '@/views/LoginUsername.vue'
@@ -27,6 +28,7 @@ const router = createRouter({
     { path: '/profile', component: Profile, meta: {auth: true}},
     { path: '/profile/myprompt', component: Myprompt, meta: {auth: true}},
     { path: '/profile/myprompt/create', component: CreatePrompt, meta: {auth: true}},
+    { path: '/profile/myprompt/edit/:id', component: EditPrompt, meta: {auth: true}},
     { path: '/settings', component: Settings, meta: {auth: true}},
     { path: '/change-password', component: ChangePassword, meta: {auth: true}},
     { path: '/ToS', component: TermsOfService },

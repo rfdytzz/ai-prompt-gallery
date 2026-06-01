@@ -80,7 +80,7 @@ onMounted ( () => {
                     <p class="text-[13px] px-2 py-1 bg-white/80 rounded-xl rounded-x w-fit">@{{ item.author.username }}</p>
                 </div>
                 <div class="w-full">
-                    <img src="/public/img/sample.jpg" class="hover:scale-115 -mt-11 transition duration-200" alt="">
+                    <img :src="`http://localhost:8000/storage/${item.thumbnail}`" class="hover:scale-115 -mt-11 w-full transition duration-200" alt="">
                 </div>
                 <div class=" bg-white relative z-10">
                 <p class="p-5 text-[20px]">

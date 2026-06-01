@@ -67,4 +67,13 @@ class MypromptController extends Controller
             'category' => $category
         ]);
     }
+
+    public function edit($id) {
+        $user = auth()->user()->id;
+
+        $data = Prompt::findOrFail($id);
+        return response()->json([
+            'data' => $data
+        ]);
+    }
 }

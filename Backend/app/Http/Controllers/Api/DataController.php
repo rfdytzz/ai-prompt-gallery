@@ -26,7 +26,7 @@ class DataController extends Controller
     }
 
     public function user() {
-        $data = User::all();
+        $data = User::where('role', 'user')->get();
 
         return response()->json([
             'data' => $data

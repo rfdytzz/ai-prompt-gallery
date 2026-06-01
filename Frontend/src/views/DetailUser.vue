@@ -51,6 +51,7 @@ onMounted(() => {
 
 <template>
     <Admin />
+    <div v-if="loading" class="fixed top-0 h-1 bg-blue-500 w-full"></div>
     <div class="ml-64 h-20 items-center px-5 flex">
         <router-link to="/dashboard/allusers" class="relative hover:text-blue-500">All User</router-link>
         <i class='bx bx-chevron-right mt-1'></i>

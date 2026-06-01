@@ -79,7 +79,7 @@ onMounted ( () => {
                     <p class="text-[13px] px-2 py-1 rounded-xl text-white bg-green-500/50 w-fit">{{ item.category.category }}</p>
                     <p class="text-[13px] px-2 py-1 bg-white/80 rounded-xl rounded-x w-fit">@{{ item.author.username }}</p>
                 </div>
-                <div class="w-full">
+                <div class="w-full h-50 flex">
                     <img :src="`http://localhost:8000/storage/${item.thumbnail}`" class="hover:scale-115 -mt-11 w-full transition duration-200" alt="">
                 </div>
                 <div class=" bg-white relative z-10">

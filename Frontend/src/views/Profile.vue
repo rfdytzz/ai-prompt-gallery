@@ -124,13 +124,13 @@ onMounted(() => {
                         <h3 class="text-[18px]">Edit Your Profile</h3>
                         <div class="flex flex-col md:flex-row gap-10 md:gap-5 items-center">
                             <div class="flex md:flex-row flex-col gap-5 items-center">
-                                <div class="">
+                            <div class="">
                                 <img v-if="avatar" :src="`http://localhost:8000/storage/${avatar}`" class="size-40 rounded-full shadow hover:shadow-xl transition duration-200" alt="">
                                 <div v-else class="bg-gray-100 shadow hover:shadow-xl transition duration-200 flex items-center justify-center p-5 rounded-full">
                                     <p class="h-full flex items-center justify-center text-[50px] w-20">
                                         {{ defaultAvatar }}
                                     </p>
-                                </div>
+                            </div>
                             </div>
                             <div v-if="imageUrl" class="flex pt-0 md:pt-5 flex-col items-center gap-2">
                                 <img :src="imageUrl"  class="size-40 rounded-full shadow hover:shadow-xl transition duration-200" alt="">   

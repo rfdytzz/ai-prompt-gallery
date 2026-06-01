@@ -28,6 +28,7 @@ Route::get('/myprompt/data/tag', [MypromptController::class, 'getDataTag']);
 Route::get('/myprompt/data/category', [MypromptController::class, 'getDataCategory']);
 Route::middleware('auth:sanctum')->post('/myprompt/store', [MypromptController::class, 'store']);
 Route::middleware('auth:sanctum')->get('/myprompt/edit/{id}', [MypromptController::class, 'edit']);
+Route::middleware('auth:sanctum')->post('/myprompt/edit/{id}', [MypromptController::class, 'update']);
 
 Route::get('/dashboard', [DataController::class, 'totalData']);
 Route::get('/dashboard/allusers', [DataController::class, 'user']);

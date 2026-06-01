@@ -76,4 +76,27 @@ class MypromptController extends Controller
             'data' => $data
         ]);
     }
+
+    public function update(Request $request, $id) {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'tag_id' => 'required',
+            'prompt' => 'required',
+        ]);
+        
+        $prompt = Prompt::findOrFail($id);
+        $prompt->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'category_id' => $request->category_id,
+            'tag_id' => $request->tag_id,
+            'prompt' => $request->prompt,
+        ]);
+
+        return response()->json([
+            'message' => 'Update success'
+        ]);
+    }
 }

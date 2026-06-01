@@ -1,5 +1,5 @@
 <script setup>
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import Nav from '@/components/Nav.vue';
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
@@ -35,18 +35,19 @@ const handleFile = (e) => {
 }
 
 const route = useRoute()
+const router = useRouter()
 
 const title = ref('')
 const description = ref('')
 const prompt = ref('')
-const tag_id = ref(null)
-const category_id = ref(null)
+const tag_id = ref('')
+const category_id = ref('')
 const thumbnailValue = ref(null)
 const data = ref('')
+const id = route.params.id
+const token = localStorage.getItem('token')
 const getData = async () => {
     try {
-        const token = localStorage.getItem('token')
-        const id = route.params.id
         const res = await axios.get(`http://localhost:8000/api/myprompt/edit/${id}`,
             {
                 headers: {
@@ -60,6 +61,29 @@ const getData = async () => {
         thumbnailValue.value = res.data.data.thumbnail
         tag_id.value = res.data.data.tag_id
         category_id.value = res.data.data.category_id
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const updatePrompt = async () => {
+    try {
+        const res = await axios.post(`http://localhost:8000/api/myprompt/edit/${id}`,
+            {
+                title: title.value,
+                description: description.value,
+                category_id: category_id.value,
+                tag_id: tag_id.value,
+                prompt: prompt.value
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
+        router.push('/profile/myprompt')
+        console.log(res.data.message)
     } catch (error) {
         console.log(error)
     }
@@ -91,13 +115,13 @@ onMounted(() => {
                         <h2 class="font-bold text-[30px]">Edit Prompt</h2>
                         <p>Edit Prompt</p>
                     </div>
-                    <form  action="" class="flex flex-col gap-3">
+                    <form @submit.prevent="updatePrompt" action="" class="flex flex-col gap-3">
                         <label for="" class="text-sm">Prompt Image <span class="text-orange-500">*</span></label>
                         <label  for="image" class="flex p-5 rounded-xl shadow justify-center text-center flex-col gap-5">
                                 <div class="flex flex-col items-center py-10 gap-3">
                                     <img v-if="preview" :src="preview" alt="" class="h-40 w-auto rounded-xl">
                                     <img v-else :src="`http://localhost:8000/storage/${thumbnailValue}`" alt="" class="h-40 w-auto rounded-xl">
-                                    <i class='bx bx-upload text-3xl'></i>
+                                    <i :class="preview === null ? 'block' : 'hidden'" class='bx bx-upload text-3xl'></i>
                                     <div class="shadow p-3 hover:bg-gray-50 cursor-pointer rounded-xl w-fit">Upload Image</div>
                                     <div class="flex flex-col items-center">
                                         <p class="italic text-sm text-gray-600 font-semibold">or Drag & Drop Image</p>
@@ -108,11 +132,11 @@ onMounted(() => {
                         </label>
                         <div class="w-full flex flex-col gap-4 mt-0 md:mt-5">
                             <label for="" class="text-sm">Title Prompt <span class="text-orange-500">*</span></label>
-                            <input :value="title" required placeholder="Title" type="text" name="email" class="p-3 bg-gray-50 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
+                            <input v-model="title" required placeholder="Title" type="text" name="email" class="p-3 bg-gray-50 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                         </div>
                         <div class="w-full flex flex-col gap-4 mt-0 md:mt-5">
                             <label for="" class="text-sm">Description <span class="text-orange-500">*</span></label>
-                            <input :value="description" required placeholder="Description" type="text" name="email" class="p-3 bg-gray-50 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
+                            <input v-model="description" required placeholder="Description" type="text" name="email" class="p-3 bg-gray-50 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
                         </div>
                         <div class="w-full flex flex-col gap-4 mt-0 md:mt-5">
                             <label for="" class="text-sm">Category <span class="text-orange-500">*</span></label>

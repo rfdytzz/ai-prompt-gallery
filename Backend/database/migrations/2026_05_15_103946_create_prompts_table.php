@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('prompts', function (Blueprint $table) {
             $table->id();
+            $table->string('thumbnail')->nullable();
             $table->string('title');
             $table->string('description');
             $table->integer('like')->default(0);

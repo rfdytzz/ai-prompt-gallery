@@ -3,8 +3,12 @@ import Nav from '@/components/Nav.vue';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { onMounted } from 'vue';
+import axios from 'axios';
 onMounted(() => {
     document.title = 'Myprompt | DwayPrompts'
+
+    getDataTag()
+    getDataCategory()
 })
 
 const route = useRoute()
@@ -25,6 +29,52 @@ const handleDrop = (e) => {
         e.target.files[0]
     )
     image.value = e.dataTransfer.files[0]
+}
+
+const tagData = ref([])
+
+const getDataTag = async () => {
+    try {
+        const res = await axios.get('http://localhost:8000/api/myprompt/data/tag')
+        console.log(res.data)
+        tagData.value = res.data.tag
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const categoryData = ref([])
+
+const getDataCategory = async () => {
+    try {
+        const res = await axios.get('http://localhost:8000/api/myprompt/data/category')
+        console.log(res.data)
+        categoryData.value = res.data.category
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const title = ref('')
+const description = ref('')
+const prompt = ref('')
+
+const newPrompt = async () => {
+    try {
+        const token = localStorage.getItem('token')
+        const formData = new FormData()
+        if (image.value) {
+            formData.append('thumbnail', image.value)
+        }
+        const res = await axios.post('http://localhost:8000/api/myprompt',
+            FormData,
+            {
+                headers: {
+                    Authorization: `bearer ${token}`
+                }
+            }
+        )
+    } catch (error) {}
 }
 
 </script>
@@ -67,7 +117,21 @@ const handleDrop = (e) => {
                         </div>
                         <div class="w-full flex flex-col gap-4 mt-0 md:mt-5">
                             <label for="" class="text-sm">Description <span class="text-orange-500">*</span></label>
-                            <input v-model="title" required placeholder="Description" type="text" name="email" class="p-3 bg-gray-50 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
+                            <input v-model="description" required placeholder="Description" type="text" name="email" class="p-3 bg-gray-50 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
+                        </div>
+                        <div class="w-full flex flex-col gap-4 mt-0 md:mt-5">
+                            <label for="" class="text-sm">Category <span class="text-orange-500">*</span></label>
+                            <select v-model="category" required placeholder="Description" type="text" name="email" class="p-3 bg-gray-50 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
+                                <option selected>Select Category</option>
+                                <option v-for="item in categoryData" :key="item.id" :value="item.id">{{ item.category }}</option>
+                            </select>
+                        </div>
+                        <div class="w-full flex flex-col gap-4 mt-0 md:mt-5">
+                            <label for="" class="text-sm">Tag <span class="text-orange-500">*</span></label>
+                            <select v-model="category" required placeholder="Description" type="text" name="email" class="p-3 bg-gray-50 focus:bg-white transition duration-200 focus:outline-0 ring-1 rounded-xl ring-gray-200 focus:ring-blue-500" id="">
+                                <option selected>Select Category</option>
+                                <option v-for="item in tagData" :key="item.id" :value="item.id">{{ item.tag }}</option>
+                            </select>
                         </div>
                         <div class="w-full flex flex-col gap-4 mt-0 md:mt-5">
                             <label for="" class="text-sm">Prompt <span class="text-orange-500">*</span></label>

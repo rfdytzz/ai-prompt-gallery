@@ -27,6 +27,7 @@ const getData = async () => {
         console.log(error)
     }
 }
+
 onMounted(() => (
     getData()
 ));

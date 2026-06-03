@@ -87,11 +87,11 @@ onMounted(() => {
         <p>Admin</p>
     </div>
     <div :class="isOpenMenu ? 'visible opacity-100' : 'invisible opacity-0'" class="fixed transition bg-white duration-00 shadow border border-gray-200 right-6 top-19 rounded-xl">
-        <ul class="flex flex-col">
-            <button class="text-md py-3 px-5 cursor-pointer hover:bg-gray-100 rounded-t-xl transition duration-100 items-center flex gap-2"><i class='bx bx-user-circle' ></i> Profile</button>
-            <button class="text-md py-3 px-5 cursor-pointer hover:bg-gray-100 rounded transition duration-100 items-center flex gap-2"><i class='bx bx-cog' ></i> Settings</button>
-            <button class="text-md py-3 px-5 cursor-pointer hover:bg-gray-100 transition duration-100 items-center flex gap-2"><i class='bx bx-lock-alt' ></i> Change Password</button>
-            <button @click="logout" class="text-md py-3 px-5 cursor-pointer hover:bg-red-400 hover:text-white text-red-500 rounded-b-xl transition duration-200 items-center flex gap-2"><i class='bx bx-log-out' ></i> Logout</button>
+        <ul class="justify-start flex flex-col">
+            <button class="text-md py-3 pr-5 pl-3 cursor-pointer hover:bg-gray-100 rounded-t-xl transition duration-100 items-center flex gap-2"><i class='bx bx-user-circle' ></i> Profile</button>
+            <button class="text-md py-3 pr-5 pl-3 cursor-pointer hover:bg-gray-100 rounded transition duration-100 items-center flex gap-2"><i class='bx bx-cog' ></i> Settings</button>
+            <button class="text-md py-3 pr-5 pl-3 cursor-pointer hover:bg-gray-100 transition duration-100 items-center flex gap-2"><i class='bx bx-lock-alt' ></i> Change Password</button>
+            <button @click="logout" class="text-md py-3 pr-5 pl-3 cursor-pointer hover:bg-red-400 hover:text-white text-red-500 rounded-b-xl transition duration-200 items-center flex gap-2"><i class='bx bx-log-out' ></i> Logout</button>
         </ul>
     </div>
 

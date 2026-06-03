@@ -104,7 +104,7 @@ onMounted( () => {
                     <span  class="h-0.5 w-6 bg-black"></span>
                     <span  class="h-0.5 w-6 bg-black"></span>
                 </button>
-                <button v-else @click="openSidebar" class="flex items-center justify-center hover:bg-gray-200 p-2 rounded-full flex-col gap-2 cursor-pointer">
+                <button v-else @click="openSidebar" class="flex items-center justify-center hover:bg-gray-100 p-2 rounded-full flex-col gap-2 cursor-pointer">
                     <i class='bx bx-x text-[30px]' ></i>
                 </button>
             </div>
